@@ -1,0 +1,31 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+  db:
+    image: postgres:alpine
+    restart: always
+    environment:
+      POSTGRES_USER: kaching
+      POSTGRES_PASSWORD: kaching
+      LC_ALL: C.UTF-8
+      LANG: en_US.UTF-8
+
+  api:
+    image: ghcr.io/simonneutert/ka-ching-backend:main
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    restart: always
+    environment:
+      - DATABASE_URL=db
+      - DATABASE_USER=kaching
+      - DATABASE_PASSWORD=kaching
+      # - RACK_ENV=development
+      # - KACHING_DEMO_MODE=true
+    depends_on:
+      - db
+    ports:
+      - 9292:9292
+    expose:
+      - 9292

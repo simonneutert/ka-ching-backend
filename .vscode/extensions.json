@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "rebornix.ruby",
+    "kaiwood.endwise",
+    "editorconfig.editorconfig",
+    "castwide.solargraph",
+    "yzhang.markdown-all-in-one",
+    "gruntfuggly.todo-tree",
+    "wingrunr21.vscode-ruby",
+    "pavlitsky.yard",
+    "aliariff.vscode-erb-beautify",
+    "ms-vscode-remote.remote-containers",
+    "ms-azuretools.vscode-docker",
+    "ssmi.after-dark"
+  ]
+}

@@ -1,0 +1,1018 @@
+openapi: "3.0.2"
+info:
+  title: KaChing API
+  version: "1.0"
+  description: |
+    <p>KaChing is a simple API to manage tenant accounts and their bookings.</p>
+    <img src="/logo.jpg"
+         alt="kaching logo is an ai generated image of a female bodybuilder sitting, crying, wiping her tears with money"
+         width="30%"
+         style="float:right">
+    <p>
+      It is a RESTful API that uses JSON for serialization and deserialization of data.
+      It is a stateless API, which means that the client does not need to keep any session or context in order to make a request.
+      The API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors.
+    </p>
+    <p>JSON is returned in all responses from the API, including errors.</p>
+    <p>The API is designed to be versioned, so that breaking changes can be introduced in future versions.</p>
+    <p>Versioning is done by the URL path, e.g. <u>/ka-ching/api/v1/</u></p>
+    <ul>
+      <li>The API is designed to be fast, so that the response time is as low as possible.</li>
+      <li>The API is designed to be scalable, so that it can handle a large number of concurrent requests.</li>
+      <li>The API is designed to be easy to maintain, test, deploy and integrated.</li>
+      <li>The API is designed to be easy to version, so that the API is easy to version and extend.</li>
+      <li>The API is designed to be easy to secure through infrastructure measures.</li>
+      <li>The API is designed to be easy to optimize, so that the API is easy to optimize and extend.</li>
+    </ul>
+
+servers:
+  - url: http://localhost:9292/ka-ching/api/v1
+
+tags:
+  - name: API Health
+    description: Check your API health status
+  - name: Admin
+    description: Admin operations
+  - name: Tenants
+    description: Operations related to tenants
+  - name: Saldo
+    description: Operations related to saldo
+  - name: Bookings
+    description: Operations related to bookings
+  - name: Lockings
+    description: Operations related to lockings
+  - name: AuditLogs
+    description: Operations related to audit_logs
+
+paths:
+  /:
+    get:
+      summary: "status"
+      description: |
+        Check your API server's health status.
+      tags:
+        - API Health
+      parameters: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/health_check_response"
+
+  /admin:
+    post:
+      summary: "create"
+      description: |
+        Create a new tenant account database by passing the tenant_account_id in the request body.
+      tags:
+        - Admin
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/tenant_account_id_request"
+      responses:
+        "200":
+          description: Created
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/post_admin_tenant_account_id_response"
+    delete:
+      summary: "delete"
+      description: |
+        Delete a tenant account database by passing the tenant_account_id in the request body.
+      tags:
+        - Admin
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/tenant_account_id_request"
+      responses:
+        "200":
+          description: Deleted
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/delete_admin_tenant_account_response"
+
+  /admin/{tenant_account_id}:
+    get:
+      summary: "details"
+      description: |
+        Returns the details of a tenant account database.
+      tags:
+        - Admin
+      parameters:
+        - name: tenant_account_id
+          in: path
+          required: true
+          description: "please, do not use whitespaces in the tenant_account_id"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/admin_tenant_account_details_response"
+
+  /tenants/all:
+    get:
+      summary: "all"
+      description: |
+        Returns all tenant accounts paginated.
+      tags:
+        - Tenants
+      parameters:
+        - name: page
+          in: query
+          required: false
+          description: "page number"
+          schema:
+            type: integer
+            example: 1
+      responses:
+        "200":
+          description: OK
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/get_tenants_all_paginated_response"
+  /tenants/active:
+    get:
+      summary: "active"
+      description: |
+        Returns all active tenant accounts paginated.
+      tags:
+        - Tenants
+      parameters:
+        - name: page
+          in: query
+          required: false
+          description: "page number"
+          schema:
+            type: integer
+            example: 1
+      responses:
+        "200":
+          description: OK
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/get_tenants_all_paginated_response"
+
+  /tenants/inactive:
+    get:
+      summary: "inactive"
+      description: |
+        Returns all inactive tenant accounts paginated.
+      tags:
+        - Tenants
+      parameters:
+        - name: page
+          in: query
+          required: false
+          description: "page number"
+          schema:
+            type: integer
+            example: 1
+      responses:
+        "200":
+          description: OK
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/get_tenants_all_paginated_response"
+
+  /{tenant_account_id}/saldo:
+    get:
+      summary: "saldo"
+      description: |
+        Current calculated saldo of a tenant account.
+      tags:
+        - Saldo
+      parameters:
+        - name: tenant_account_id
+          description: "please, do not use whitespaces in the tenant_account_id"
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/get_tenant_saldo_response"
+
+  /{tenant_account_id}/bookings:
+    post:
+      summary: "create"
+      description: |
+        Create a new booking, either a deposit or a withdraw of money.
+      tags:
+        - Bookings
+      parameters:
+        - name: tenant_account_id
+          description: "please, do not use whitespaces in the tenant_account_id"
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/post_booking_request"
+      responses:
+        "200":
+          description: Created
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/post_tenant_bookings_deposit_response"
+    delete:
+      summary: "delete"
+      description: "Delete a booking by ID."
+      tags:
+        - Bookings
+      parameters:
+        - name: tenant_account_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/delete_booking_request"
+      responses:
+        "200":
+          description: OK
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/booking_delete_response"
+
+  /{tenant_account_id}/bookings/unlocked:
+    get:
+      summary: "unlocked"
+      description: "Get all unlocked bookings of a tenant account."
+      tags:
+        - Bookings
+      parameters:
+        - name: tenant_account_id
+          description: "please, do not use whitespaces in the tenant_account_id"
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/booking-unlocked-response"
+
+  /{tenant_account_id}/lockings:
+    post:
+      summary: "create"
+      description: |
+        Create a new locking at a day in month and year.
+      tags:
+        - Lockings
+      parameters:
+        - name: tenant_account_id
+          description: "please, do not use whitespaces in the tenant_account_id"
+          in: path
+          required: true
+          schema:
+            type: string
+            description: "please, do not use whitespaces in the tenant_account_id"
+      requestBody:
+        required: true
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/post_locking_request"
+      responses:
+        "200":
+          description: Created
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/post_lockings_lock_response"
+    delete:
+      summary: "delete"
+      description: "Deletes last active locking."
+      tags:
+        - Lockings
+      parameters:
+        - name: tenant_account_id
+          description: "please, do not use whitespaces in the tenant_account_id"
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/unlock-locking-response"
+
+    get:
+      summary: "lockings"
+      description: |
+        Get (paginated) lockings for a tenant. 
+
+        If you pass a date, you will get all lockings for that day.
+        If you pass year and inactive=true, you will get all inactive lockings for that year.
+        If you pass year and month, you will get all lockings for that month.
+        If you pass year, month and active=true, you will get all active lockings for that month.
+        If you pass nothing, you will get all lockings.
+      tags:
+        - Lockings
+      parameters:
+        - name: tenant_account_id
+          description: "please, do not use whitespaces in the tenant_account_id"
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "testuser123"
+        - name: year
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 2023
+        - name: month
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 3
+        - name: day
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 31
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 1
+        - name: per_page
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 100
+      responses:
+        "200":
+          description: OK
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/get_paginated_lockings_response"
+
+  /{tenant_account_id}/auditlogs:
+    get:
+      summary: "year, month and day"
+      description: |
+        Get audit_logs for a tenant at a day in month and year.
+
+        Only the query parameter year is required.
+
+        If you pass month additionally, you will get all audit_logs for that month.
+        If you pass month and day additionally, you will get all audit_logs for that day.
+      tags:
+        - AuditLogs
+      parameters:
+        - name: tenant_account_id
+          description: "please, do not use whitespaces in the tenant_account_id"
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: year
+          in: query
+          required: true
+          schema:
+            type: integer
+            example: 2020
+        - name: month
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 1
+        - name: day
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 31
+      responses:
+        "200":
+          description: OK
+          content:
+            "application/json":
+              schema:
+                $ref: "#/components/schemas/audit_logs_year_month_day_response"
+
+components:
+  schemas:
+    health_check_response:
+      type: object
+      properties:
+        api:
+          type: string
+          example: "V1"
+        health:
+          type: string
+          example: "success"
+        status:
+          type: string
+          example: "ok"
+      additionalProperties: false
+      required:
+        - api
+        - health
+        - status
+
+    tenant_account_id_request:
+      type: object
+      properties:
+        tenant_account_id:
+          type: string
+          example: "superhungry123"
+      required: [tenant_account_id]
+
+    admin_tenant_account_details_response:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        tenant_db_id:
+          type: string
+          example: "superhungry123"
+        active:
+          type: boolean
+        current_state:
+          type: string
+          example: "created"
+        next_state:
+          type: string
+        context:
+          type: object
+          properties: {}
+          example: { foo: "bar" }
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+      additionalProperties: false
+      required:
+        - id
+        - tenant_db_id
+        - active
+        - current_state
+        - next_state
+        - context
+        - created_at
+        - updated_at
+
+    post_admin_tenant_account_id_response:
+      type: object
+      properties:
+        api:
+          type: string
+          example: "V1"
+        health:
+          type: string
+          example: "success"
+        db:
+          type: array
+          items:
+            type: string
+            example:
+              [
+                "sequel_constraint_validations",
+                "schema_info",
+                "bookings",
+                "audit_logs",
+                "lockings",
+              ]
+      additionalProperties: false
+      required:
+        - api
+        - health
+        - db
+
+    delete_admin_tenant_account_response:
+      type: object
+      properties:
+        api:
+          type: string
+          example: "V1"
+        health:
+          type: string
+          example: "success"
+        result:
+          type: string
+          example: "dropped"
+      additionalProperties: false
+      required:
+        - api
+        - health
+        - result
+
+    get_tenant_saldo_response:
+      type: object
+      properties:
+        saldo:
+          type: integer
+          example: 1000
+      additionalProperties: false
+      required:
+        - saldo
+
+    delete_booking_request:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+      required: [id]
+
+    post_booking_request:
+      type: object
+      properties:
+        action:
+          type: string
+          enum: [deposit, withdraw]
+        amount_cents:
+          type: integer
+          minimum: 1
+          example: 1000
+        year:
+          type: integer
+          example: 2020
+        month:
+          type: integer
+          example: 1
+        day:
+          type: integer
+          example: 31
+        context:
+          type: object
+          properties: {}
+          example: { foo: "bar" }
+      required: [action, amount_cents, year, month, day]
+
+    post_tenant_bookings_deposit_response:
+      type: object
+      properties:
+        status:
+          type: boolean
+          example: true
+        saldo:
+          type: integer
+          example: 1000
+        record:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+            action:
+              type: string
+              enum: [deposit, withdraw]
+              example: deposit
+            amount_cents:
+              type: integer
+              example: 1000
+              minimum: 0
+            realized:
+              type: string
+              format: date-time
+            context:
+              type: object
+              example: { foo: "bar" }
+            created_at:
+              type: string
+              format: date-time
+            updated_at:
+              type: string
+              format: date-time
+          required:
+            - id
+            - action
+            - amount_cents
+            - realized
+            - context
+            - created_at
+            - updated_at
+          additionalProperties: false
+        context:
+          type: object
+      additionalProperties: false
+      required:
+        - status
+        - saldo
+        - record
+        - context
+
+    booking_delete_response:
+      type: object
+      properties:
+        status:
+          type: boolean
+        record:
+          type: object
+          properties:
+            deleted:
+              type: object
+              properties:
+                id:
+                  type: string
+                action:
+                  type: string
+                amount_cents:
+                  type: integer
+                realized:
+                  type: string
+                context:
+                  type: string
+                created_at:
+                  type: string
+                updated_at:
+                  type: string
+              required:
+                - id
+                - action
+                - amount_cents
+                - realized
+                - context
+                - created_at
+                - updated_at
+              additionalProperties: false
+          required:
+            - deleted
+          additionalProperties: false
+      additionalProperties: false
+      required:
+        - status
+        - record
+
+    post_locking_request:
+      type: object
+      properties:
+        action:
+          type: string
+          enum: [lock]
+        amount_cents_saldo_user_counted:
+          type: integer
+          minimum: 0
+          example: 1000
+        year:
+          type: integer
+          example: 2020
+        month:
+          type: integer
+          example: 1
+        day:
+          type: integer
+          example: 31
+        context:
+          type: object
+          properties: {}
+          example: { foo: "bar" }
+      required: [action, amount_cents_saldo_user_counted, year, month, day]
+
+    post_lockings_lock_response:
+      type: object
+      properties:
+        status:
+          type: boolean
+        saldo:
+          type: integer
+          example: 1000
+        diff:
+          type: integer
+          example: -1
+        record:
+          type: object
+          properties:
+            id:
+              type: integer
+            saldo_cents_calculated:
+              type: integer
+            amount_cents_saldo_user_counted:
+              type: integer
+            active:
+              type: boolean
+            realized:
+              type: string
+            bookings_json:
+              type: string
+            context:
+              type: string
+            created_at:
+              type: string
+            updated_at:
+              type: string
+          required:
+            - id
+            - saldo_cents_calculated
+            - amount_cents_saldo_user_counted
+            - active
+            - realized
+            - bookings_json
+            - context
+            - created_at
+            - updated_at
+          additionalProperties: false
+        context:
+          type: string
+      additionalProperties: false
+      required:
+        - status
+        - saldo
+        - diff
+        - record
+        - context
+
+    unlock-locking-response:
+      type: object
+      properties:
+        id:
+          type: integer
+        saldo_cents_calculated:
+          type: integer
+        amount_cents_saldo_user_counted:
+          type: integer
+        active:
+          type: boolean
+        realized:
+          type: string
+        bookings_json:
+          type: string
+        context:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+      additionalProperties: false
+      required:
+        - id
+        - saldo_cents_calculated
+        - amount_cents_saldo_user_counted
+        - active
+        - realized
+        - bookings_json
+        - context
+        - created_at
+        - updated_at
+
+    booking-unlocked-response:
+      type: object
+      properties:
+        bookings:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              action:
+                type: string
+              amount_cents:
+                type: integer
+              realized:
+                type: string
+              context:
+                type: string
+              created_at:
+                type: string
+              updated_at:
+                type: string
+      additionalProperties: false
+      required:
+        - bookings
+
+    audit_logs_year_month_day_response:
+      type: object
+      properties:
+        audit_logs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 1337
+              table_referenced:
+                type: string
+                example: "lockings"
+              environment_snapshot:
+                type: string
+                description: "JSON string"
+                example: '{"foo":"bar"}'
+              log_entry:
+                type: string
+                description: "JSON string"
+                example: '{"foo":"bar"}'
+              created_at:
+                type: string
+                format: date-time
+              updated_at:
+                type: string
+                format: date-time
+      additionalProperties: false
+      required:
+        - audit_logs
+
+    get_paginated_lockings_response:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          example: 1
+        current_page_record_count:
+          type: integer
+          example: 1
+        current_page_record_range:
+          type: string
+          example: "1..1"
+        first_page:
+          type: boolean
+        last_page:
+          type: boolean
+          example: false
+        next_page:
+          type: integer
+          example: 1
+        page_count:
+          type: integer
+          example: 1
+        page_range:
+          type: string
+          example: "1..1"
+        page_size:
+          type: integer
+          example: 100
+        pagination_record_count:
+          type: integer
+        prev_page:
+          type: integer
+          example: 1
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 1337
+              saldo_cents_calculated:
+                type: integer
+                example: 1000
+              amount_cents_saldo_user_counted:
+                type: integer
+                example: 999
+              active:
+                type: boolean
+                example: true
+              realized:
+                type: string
+                example: "2020-01-01"
+              bookings_json:
+                type: string
+                example: '[{"id":1,"action":"lock","amount_cents":1000,"realized":"2020-01-01","context":"{}","created_at":"2020-01-01T00:00:00.000Z","updated_at":"2020-01-01T00:00:00.000Z"}]'
+              context:
+                type: string
+                example: '{"foo":"bar"}'
+              created_at:
+                type: string
+                format: date-time
+              updated_at:
+                type: string
+                format: date-time
+      additionalProperties: false
+      required:
+        - current_page
+        - current_page_record_count
+        - current_page_record_range
+        - first_page
+        - last_page
+        - next_page
+        - page_count
+        - page_range
+        - page_size
+        - pagination_record_count
+        - prev_page
+        - items
+
+    get_tenants_all_paginated_response:
+      type: object
+      properties:
+        current_page:
+          type: integer
+          example: 1
+        current_page_record_count:
+          type: integer
+          example: 1
+        current_page_record_range:
+          type: string
+          example: "1..1"
+        first_page:
+          type: boolean
+          example: true
+        last_page:
+          type: boolean
+          example: true
+        next_page:
+          type: integer
+          example: 1
+        page_count:
+          type: integer
+          example: 1
+        page_range:
+          type: string
+          example: "1..1"
+        page_size:
+          type: integer
+          example: 1000
+        pagination_record_count:
+          type: integer
+          example: 1
+        prev_page:
+          type: integer
+          example: null
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              tenant_db_id:
+                type: string
+                example: "kaching_tenant_testuser1"
+              active:
+                type: boolean
+                example: true
+              current_state:
+                type: string
+                example: "created"
+              next_state:
+                type: integer
+                example: null
+              context:
+                type: object
+                properties: {}
+                example: { foo: "bar" }
+                additionalProperties: false
+              created_at:
+                type: string
+                format: date-time
+              updated_at:
+                type: string
+                format: date-time
+      additionalProperties: false
+      required:
+        - current_page
+        - current_page_record_count
+        - current_page_record_range
+        - first_page
+        - last_page
+        - next_page
+        - page_count
+        - page_range
+        - page_size
+        - pagination_record_count
+        - prev_page
+        - items

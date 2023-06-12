@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+DATABASE_TENANT_DATABASE_NAMESPACE_SH="${DATABASE_TENANT_DATABASE_NAMESPACE:=kaching_tenant_}"  # If variable not set or null, set it to default.
+DATABASE_NAME_SHARED=kaching_shared bundle exec rake db:shared:init
+DATABASE_NAME_BLANK=${DATABASE_TENANT_DATABASE_NAMESPACE_SH}blank bundle exec rake db:create
+DATABASE_NAME_BLANK=${DATABASE_TENANT_DATABASE_NAMESPACE_SH}blank bundle exec rake db:migrate
+DATABASE_NAME_BLANK=${DATABASE_TENANT_DATABASE_NAMESPACE_SH}development bundle exec rake db:create
+DATABASE_NAME_BLANK=${DATABASE_TENANT_DATABASE_NAMESPACE_SH}development bundle exec rake db:migrate
+DATABASE_NAME_BLANK=${DATABASE_TENANT_DATABASE_NAMESPACE_SH}test bundle exec rake db:create
+DATABASE_NAME_BLANK=${DATABASE_TENANT_DATABASE_NAMESPACE_SH}test bundle exec rake db:migrate

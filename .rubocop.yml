@@ -1,0 +1,71 @@
+inherit_from: .rubocop_todo.yml
+
+# The behavior of RuboCop can be controlled via the .rubocop.yml
+# configuration file. It makes it possible to enable/disable
+# certain cops (checks) and to alter their behavior if they accept
+# any parameters. The file can be placed either in your home
+# directory or in some project directory.
+#
+# RuboCop will start looking for the configuration file in the directory
+# where the inspected file is and continue its way up to the root directory.
+#
+# See https://docs.rubocop.org/rubocop/configuration
+
+# RuboCop will then check your project for a series of files where
+# the version may be specified already. The files that will be looked
+# for are .ruby-version, .tool-versions, Gemfile.lock, and *.gemspec.
+# If Gemspec file has an array for required_ruby_version, the lowest
+# version will be used. If none of the files are found a default version
+# value will be used.
+#
+AllCops:
+  TargetRubyVersion: 3.0
+  NewCops: enable
+
+require:
+  - rubocop-rake
+  - rubocop-sequel
+  - rubocop-minitest
+  - rubocop-performance
+
+# Configuration parameters: CountComments, CountAsOne, ExcludedMethods, AllowedMethods, AllowedPatterns, IgnoredMethods.
+# AllowedMethods: refine
+Metrics/BlockLength:
+  CountAsOne:
+    - "hash"
+    - "array"
+    - "heredoc"
+    - "method_call"
+  Exclude:
+    - "app.rb"
+  Max: 72
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/ClassLength:
+  Exclude:
+    - "app.rb"
+    - "test/api/v1/integration/**/*.rb"
+
+Metrics/MethodLength:
+  Max: 20
+  CountAsOne:
+    - "array"
+    - "hash"
+    - "heredoc"
+    - "method_call"
+  Exclude:
+    - "test/api/v1/**/*"
+    - "test/parse_env_on_off_test.rb"
+
+Metrics/AbcSize:
+  Exclude:
+    - "test/api/v1/**/*"
+    - "test/parse_env_on_off_test.rb"
+
+Layout/LineLength:
+  Exclude:
+    - "db/migrations/**/*"
+    - "test/api/**/*"
+    - "db.rb"
