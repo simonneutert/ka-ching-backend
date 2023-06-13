@@ -107,7 +107,7 @@ module Api
         def validate!
           validate_action!
           locking_last_realized_at = query_lockings(@conn).latest_active
-          return if @realized > locking_last_realized_at[:realized_at]
+          return if @realized_at > locking_last_realized_at[:realized_at]
 
           validate_realized!(locking_last_realized_at)
           raise Api::V1::Locking::LockingError.new(locking_last_realized_at),

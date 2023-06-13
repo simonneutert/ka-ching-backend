@@ -56,11 +56,11 @@ end
 
 def get_lockings_query(conn, date_range, active, inactive)
   if active
-    query_lockings(conn).active_in_date_range_order_realized_desc(date_range)
+    query_lockings(conn).active_in_date_range_order_realized_at_desc(date_range)
   elsif inactive
-    query_lockings(conn).inactive_in_date_range_order_realized_desc(date_range)
+    query_lockings(conn).inactive_in_date_range_order_realized_at_desc(date_range)
   else
-    query_lockings(conn).in_date_range_order_realized_desc(date_range)
+    query_lockings(conn).in_date_range_order_realized_at_desc(date_range)
   end
 end
 
