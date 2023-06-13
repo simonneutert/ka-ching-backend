@@ -227,7 +227,7 @@ class App < Roda
               r.on 'bookings' do
                 r.on 'unlocked' do
                   { bookings: query_bookings(conn).active(query_lockings(conn)
-                                                                 .latest_active[:realized]) }
+                                                                 .latest_active[:realized_at]) }
                 end
 
                 r.post do

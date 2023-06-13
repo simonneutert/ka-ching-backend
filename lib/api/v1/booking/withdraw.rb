@@ -32,7 +32,7 @@ module Api
             new_booking_id = @conn_bookings.insert(id: SecureRandom.uuid,
                                                    amount_cents: @booker.amount_cents,
                                                    action: @booker.action,
-                                                   realized: @booker.realized,
+                                                   realized_at: @booker.realized_at,
                                                    context: @booker.context.to_json)
 
             query_bookings(@conn).find_by(id: new_booking_id)
@@ -42,22 +42,22 @@ module Api
         private
 
         def validate!
-          latest_locking_realized = query_lockings(@conn).latest_active[:realized]
-          validate_open!(latest_locking_realized)
-          validate_saldo_positive!(latest_locking_realized)
+          latest_locking_realized_at = query_lockings(@conn).latest_active[:realized_at]
+          validate_open!(latest_locking_realized_at)
+          validate_saldo_positive!(latest_locking_realized_at)
         end
 
-        def validate_saldo_positive!(latest_locking_realized)
-          current_saldo = Api::V1::Repository::Saldo.new(@conn).sum_up_until(@booker.realized)
-          return latest_locking_realized unless (current_saldo - @booker.amount_cents).negative?
+        def validate_saldo_positive!(latest_locking_realized_at)
+          current_saldo = Api::V1::Repository::Saldo.new(@conn).sum_up_until(@booker.realized_at)
+          return latest_locking_realized_at unless (current_saldo - @booker.amount_cents).negative?
 
           raise Api::V1::Booking::BookerError.new('Booking not possible, saldo cannot be negative!',
                                                   error_obj: { current_saldo: current_saldo,
                                                                withdraw_amount_cent: @booker.amount_cents })
         end
 
-        def validate_open!(latest_locking_realized)
-          return if @booker.realized > latest_locking_realized
+        def validate_open!(latest_locking_realized_at)
+          return if @booker.realized_at > latest_locking_realized_at
 
           raise Api::V1::Booking::BookerError, 'Booking not possible, locked for this day!'
         end

@@ -45,7 +45,7 @@ module Api
         def last_active_realized(before_date_or_time: nil)
           @conn_lockings.where(active: true)
                         .where { realized < before_date_or_time }
-                        .order(:realized).last
+                        .order(:realized_at).last
         end
 
         #
@@ -56,8 +56,8 @@ module Api
         # @return [Array<Hash>] list of lockings
         #
         def in_date_range_order_realized_desc(date_range)
-          @conn_lockings.order(Sequel.desc(:realized))
-                        .where(realized: date_range)
+          @conn_lockings.order(Sequel.desc(:realized_at))
+                        .where(realized_at: date_range)
         end
 
         #
@@ -68,8 +68,8 @@ module Api
         # @return [Array<Hash>] list of lockings
         #
         def active_in_date_range_order_realized_desc(date_range)
-          @conn_lockings.order(Sequel.desc(:realized))
-                        .where(realized: date_range)
+          @conn_lockings.order(Sequel.desc(:realized_at))
+                        .where(realized_at: date_range)
                         .where(active: true)
         end
 
@@ -81,8 +81,8 @@ module Api
         # @return [Array<Hash>] list of lockings
         #
         def inactive_in_date_range_order_realized_desc(date_range)
-          @conn_lockings.order(Sequel.desc(:realized))
-                        .where(realized: date_range)
+          @conn_lockings.order(Sequel.desc(:realized_at))
+                        .where(realized_at: date_range)
                         .where(active: false)
         end
 
@@ -92,7 +92,7 @@ module Api
         # @return [Hash] the locking
         #
         def latest_active
-          locking = @conn_lockings.order(:realized)
+          locking = @conn_lockings.order(:realized_at)
                                   .where(active: true)
                                   .last
           locking || locking_never_locked
@@ -101,7 +101,7 @@ module Api
         private
 
         def locking_never_locked
-          { realized: DB::EARLIEST_BOOKING }
+          { realized_at: DB::EARLIEST_BOOKING }
         end
       end
     end

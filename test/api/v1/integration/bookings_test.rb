@@ -239,7 +239,7 @@ class TestBookings < ApiIntegrationHelperTest
     refute_empty json_body['record']
     assert json_body['record']['id'].is_a?(String)
     assert json_body['record']['amount_cents'].is_a?(Integer)
-    assert Time.parse(json_body['record']['realized'])
+    assert Time.parse(json_body['record']['realized_at'])
   end
 
   #
@@ -279,7 +279,7 @@ class TestBookings < ApiIntegrationHelperTest
 
     assert_predicate last_response, :ok?
 
-    uuid_of_last_booking = DB::DATABASE_TENANT_TEST_CONN[:bookings].order(:realized).all.last[:id]
+    uuid_of_last_booking = DB::DATABASE_TENANT_TEST_CONN[:bookings].order(:realized_at).all.last[:id]
     uri = '/ka-ching/api/v1/test/bookings'
     delete(uri, JSON.generate({ id: uuid_of_last_booking }), header_content_type_json)
     json_body = JSON.parse(last_response.body)

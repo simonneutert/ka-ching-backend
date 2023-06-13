@@ -9,7 +9,7 @@ module Api
         attr_reader :tenant_db_connector,
                     :amount_cents,
                     :action,
-                    :realized,
+                    :realized_at,
                     :context
 
         def initialize(conn, params)
@@ -51,7 +51,7 @@ module Api
             @action = casted_params.action
             @amount_cents = casted_params.amount_cents
             @context = casted_params.context
-            @realized = casted_params.build_realized
+            @realized_at = casted_params.build_realized_at
           end
         end
       end

@@ -34,7 +34,7 @@ module Api
         #
         # @return [Time] the time of the booking
         #
-        def build_realized
+        def build_realized_at
           Time.new(@year, @month, @day)
         end
       end
