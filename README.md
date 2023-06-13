@@ -163,7 +163,7 @@ $ http DELETE ':9292/ka-ching/api/v1/testuser_1/lockings'
 $ http ':9292/ka-ching/api/v1/testuser_1/auditlogs/2023'
 ```
 
-I recommend digging into the [API V1 documentation](docs/api/v1/index.md) to learn more about the whole feature set of the API.
+I recommend digging into the [API V1 documentation](public/docs/api/v1/Readme.md) to learn more about the whole feature set of the API.
 
 ---
 
