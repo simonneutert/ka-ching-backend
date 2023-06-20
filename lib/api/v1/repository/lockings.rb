@@ -19,8 +19,12 @@ module Api
         #
         # @return [Hash] pagination result with items key holding the lockings
         #
-        def all(page: 1, per_page: 10, order: :created_at)
-          result_paginated(@conn_lockings.order(order), Integer(page), Integer(per_page))
+        def all(page: 1, per_page: 10, order: :realized_at, direction: :desc)
+          if direction.to_sym == :desc
+            result_paginated(@conn_lockings.order(Sequel.desc(order)), Integer(page), Integer(per_page))
+          else
+            result_paginated(@conn_lockings.order(order), Integer(page), Integer(per_page))
+          end
         end
 
         #

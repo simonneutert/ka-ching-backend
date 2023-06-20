@@ -293,7 +293,7 @@ class App < Roda
                     q = get_lockings_query(conn, date_range, active, inactive)
                     result_paginated(q, Integer(page), Integer(per_page))
                   else
-                    query_lockings(conn).all(page: page, per_page: per_page, order: :created_at)
+                    query_lockings(conn).all(page: page, per_page: per_page, order: :realized_at)
                   end
                 end
               end

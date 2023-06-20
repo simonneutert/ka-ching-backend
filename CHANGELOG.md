@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.2.0] - 2023-06-20
 
-- [#1](https://github.com/simonneutert/ka-ching-backend/pull/1) changes attribute/column from `realized` to `realized_at` [@simonneutert](https://github.com/simonneutert)
+- [#1](https://github.com/simonneutert/ka-ching-backend/pull/1) changes attribute/column from `realized` to `realized_at` - [@simonneutert](https://github.com/simonneutert).
 
 ## [0.1.0] - 2023-06-14
 
-- Initial release
+- Initial release.
