@@ -7,7 +7,7 @@ Sequel.migration do
 
       String :action, index: true, null: false
       Integer :amount_cents, null: false
-      DateTime :realized, index: true
+      DateTime :realized_at, index: true
       column :context, :jsonb, null: false
 
       DateTime :created_at, default: Sequel::CURRENT_TIMESTAMP, index: true

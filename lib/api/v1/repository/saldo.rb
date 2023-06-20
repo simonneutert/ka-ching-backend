@@ -75,29 +75,29 @@ module Api
 
         def bookings_since_last_locking_sum_amount_cents(action, last_active_locking)
           @conn.where(action: action)
-               .where { realized > last_active_locking[:realized] }
+               .where { realized_at > last_active_locking[:realized_at] }
                .select(Sequel.lit('sum(cast(amount_cents as int)) as saldo '))
                .first[:saldo]
         end
 
         def bookings_since_last_locking_until_date_sum_amount_cents(action, realized_until, last_active_locking)
           @conn.where(action: action)
-               .where { realized > last_active_locking[:realized] }
-               .where { realized <= realized_until }
+               .where { realized_at > last_active_locking[:realized_at] }
+               .where { realized_at <= realized_until }
                .select(Sequel.lit('sum(cast(amount_cents as int)) as saldo '))
                .first[:saldo]
         end
 
         def last_active_locking
           @conn_locking.where(active: true)
-                       .order(:realized)
+                       .order(:realized_at)
                        .last || last_active_locking_missing_obj
         end
 
         def last_active_locking_missing_obj
           @last_active_locking_missing_obj ||= { amount_cents_saldo_user_counted: 0,
                                                  saldo_cents_calculated: 0,
-                                                 realized: DB::EARLIEST_BOOKING }
+                                                 realized_at: DB::EARLIEST_BOOKING }
         end
       end
     end

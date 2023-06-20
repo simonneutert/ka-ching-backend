@@ -49,22 +49,22 @@ module Api
 
         def query_find_last_active_id
           @conn_lockings.where(active: true)
-                        .order(:realized)
+                        .order(:realized_at)
                         .last[:id]
         end
 
         def validate!
           validate_no_newer_booking!
-          last_reopened_locking = @conn_lockings.where(active: false).order(:realized).last
+          last_reopened_locking = @conn_lockings.where(active: false).order(:realized_at).last
 
           return true if last_reopened_locking.nil?
-          return unless last_reopened_locking[:realized] > @last_active_locking[:realized]
+          return unless last_reopened_locking[:realized_at] > @last_active_locking[:realized_at]
 
           raise Api::V1::Locking::DeactivatorError, message_remove_last_lock_only
         end
 
         def validate_no_newer_booking!
-          return unless active_realized_present?
+          return unless active_realized_at_present?
 
           raise Api::V1::Locking::DeactivatorError, message_remove_last_lock_only
         end
@@ -73,10 +73,10 @@ module Api
           'You can unlock the last lock only, now go wash your hands!'
         end
 
-        def active_realized_present?
+        def active_realized_at_present?
           query_bookings(@conn).active(
-            @last_active_locking[:realized],
-            order: :realized
+            @last_active_locking[:realized_at],
+            order: :realized_at
           ).any?
         end
       end

@@ -7,7 +7,7 @@ class TestBookings < ApiIntegrationHelperTest
   include Minitest::Hooks
 
   def type_locking?(locking)
-    valid_keys = %w[id saldo_cents_calculated amount_cents_saldo_user_counted realized created_at updated_at]
+    valid_keys = %w[id saldo_cents_calculated amount_cents_saldo_user_counted realized_at created_at updated_at]
     valid_keys.all? { |k| locking.key?(k) }
   end
 
@@ -239,7 +239,7 @@ class TestBookings < ApiIntegrationHelperTest
     refute_empty json_body['record']
     assert json_body['record']['id'].is_a?(String)
     assert json_body['record']['amount_cents'].is_a?(Integer)
-    assert Time.parse(json_body['record']['realized'])
+    assert Time.parse(json_body['record']['realized_at'])
   end
 
   #
@@ -279,7 +279,7 @@ class TestBookings < ApiIntegrationHelperTest
 
     assert_predicate last_response, :ok?
 
-    uuid_of_last_booking = DB::DATABASE_TENANT_TEST_CONN[:bookings].order(:realized).all.last[:id]
+    uuid_of_last_booking = DB::DATABASE_TENANT_TEST_CONN[:bookings].order(:realized_at).all.last[:id]
     uri = '/ka-ching/api/v1/test/bookings'
     delete(uri, JSON.generate({ id: uuid_of_last_booking }), header_content_type_json)
     json_body = JSON.parse(last_response.body)

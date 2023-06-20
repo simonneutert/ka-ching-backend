@@ -43,20 +43,20 @@ module Api
         #
         # @return [Array<Hash>] list of bookings
         #
-        def active(last_locking_realized, order: :created_at)
-          @conn_bookings.where { realized > last_locking_realized }.order(order).all
+        def active(last_locking_realized_at, order: :created_at)
+          @conn_bookings.where { realized_at > last_locking_realized_at }.order(order).all
         end
 
         #
         # get pagination of bookings that are active
         #
-        # @param [Date, Time, DateTime] last_locking_realized
+        # @param [Date, Time, DateTime] last_locking_realized_at
         # @param [Symbol] order column to order by
         #
         # @return [Array<Hash>] list of bookings
         #
-        def active_paginated(last_locking_realized, order: :created_at, page: 1, per_page: 100)
-          @conn_bookings.paginate(page, per_page).where { realized > last_locking_realized }.order(order).all
+        def active_paginated(last_locking_realized_at, order: :created_at, page: 1, per_page: 100)
+          @conn_bookings.paginate(page, per_page).where { realized_at > last_locking_realized_at }.order(order).all
         end
       end
     end

@@ -42,7 +42,7 @@ module Api
         end
 
         def deletable?(booking:, last_locking:)
-          booking[:realized].to_date > last_locking[:realized].to_date
+          booking[:realized_at].to_date > last_locking[:realized_at].to_date
         end
 
         def validate!
@@ -50,9 +50,9 @@ module Api
         end
 
         def valid_unlocked!
-          latest_lock_realized = query_lockings(@conn).latest_active[:realized]
+          latest_lock_realized_at = query_lockings(@conn).latest_active[:realized_at]
           booking = query_bookings(@conn).find_by(id: @uuid)
-          booking && booking[:realized] > latest_lock_realized
+          booking && booking[:realized_at] > latest_lock_realized_at
         end
       end
     end

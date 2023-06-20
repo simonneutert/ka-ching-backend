@@ -613,7 +613,7 @@ components:
               type: integer
               example: 1000
               minimum: 0
-            realized:
+            realized_at:
               type: string
               format: date-time
             context:
@@ -629,7 +629,7 @@ components:
             - id
             - action
             - amount_cents
-            - realized
+            - realized_at
             - context
             - created_at
             - updated_at
@@ -660,7 +660,7 @@ components:
                   type: string
                 amount_cents:
                   type: integer
-                realized:
+                realized_at:
                   type: string
                 context:
                   type: string
@@ -672,7 +672,7 @@ components:
                 - id
                 - action
                 - amount_cents
-                - realized
+                - realized_at
                 - context
                 - created_at
                 - updated_at
@@ -732,7 +732,7 @@ components:
               type: integer
             active:
               type: boolean
-            realized:
+            realized_at:
               type: string
             bookings_json:
               type: string
@@ -747,7 +747,7 @@ components:
             - saldo_cents_calculated
             - amount_cents_saldo_user_counted
             - active
-            - realized
+            - realized_at
             - bookings_json
             - context
             - created_at
@@ -774,7 +774,7 @@ components:
           type: integer
         active:
           type: boolean
-        realized:
+        realized_at:
           type: string
         bookings_json:
           type: string
@@ -790,7 +790,7 @@ components:
         - saldo_cents_calculated
         - amount_cents_saldo_user_counted
         - active
-        - realized
+        - realized_at
         - bookings_json
         - context
         - created_at
@@ -810,7 +810,7 @@ components:
                 type: string
               amount_cents:
                 type: integer
-              realized:
+              realized_at:
                 type: string
               context:
                 type: string
@@ -905,12 +905,12 @@ components:
               active:
                 type: boolean
                 example: true
-              realized:
+              realized_at:
                 type: string
                 example: "2020-01-01"
               bookings_json:
                 type: string
-                example: '[{"id":1,"action":"lock","amount_cents":1000,"realized":"2020-01-01","context":"{}","created_at":"2020-01-01T00:00:00.000Z","updated_at":"2020-01-01T00:00:00.000Z"}]'
+                example: '[{"id":1,"action":"lock","amount_cents":1000,"realized_at":"2020-01-01","context":"{}","created_at":"2020-01-01T00:00:00.000Z","updated_at":"2020-01-01T00:00:00.000Z"}]'
               context:
                 type: string
                 example: '{"foo":"bar"}'

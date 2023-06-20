@@ -19,8 +19,12 @@ module Api
         #
         # @return [Hash] pagination result with items key holding the lockings
         #
-        def all(page: 1, per_page: 10, order: :created_at)
-          result_paginated(@conn_lockings.order(order), Integer(page), Integer(per_page))
+        def all(page: 1, per_page: 10, order: :realized_at, direction: :desc)
+          if direction.to_sym == :desc
+            result_paginated(@conn_lockings.order(Sequel.desc(order)), Integer(page), Integer(per_page))
+          else
+            result_paginated(@conn_lockings.order(order), Integer(page), Integer(per_page))
+          end
         end
 
         #
@@ -36,16 +40,16 @@ module Api
         end
 
         #
-        # returns the last realized and active locking
+        # returns the last realized_at and active locking
         #
         # @param [Date, Time, DateTime] before_date_or_time the date or time
         #
         # @return [Hash] the locking
         #
-        def last_active_realized(before_date_or_time: nil)
+        def last_active_realized_at(before_date_or_time: nil)
           @conn_lockings.where(active: true)
-                        .where { realized < before_date_or_time }
-                        .order(:realized).last
+                        .where { realized_at < before_date_or_time }
+                        .order(:realized_at).last
         end
 
         #
@@ -55,9 +59,9 @@ module Api
         #
         # @return [Array<Hash>] list of lockings
         #
-        def in_date_range_order_realized_desc(date_range)
-          @conn_lockings.order(Sequel.desc(:realized))
-                        .where(realized: date_range)
+        def in_date_range_order_realized_at_desc(date_range)
+          @conn_lockings.order(Sequel.desc(:realized_at))
+                        .where(realized_at: date_range)
         end
 
         #
@@ -67,9 +71,9 @@ module Api
         #
         # @return [Array<Hash>] list of lockings
         #
-        def active_in_date_range_order_realized_desc(date_range)
-          @conn_lockings.order(Sequel.desc(:realized))
-                        .where(realized: date_range)
+        def active_in_date_range_order_realized_at_desc(date_range)
+          @conn_lockings.order(Sequel.desc(:realized_at))
+                        .where(realized_at: date_range)
                         .where(active: true)
         end
 
@@ -80,9 +84,9 @@ module Api
         #
         # @return [Array<Hash>] list of lockings
         #
-        def inactive_in_date_range_order_realized_desc(date_range)
-          @conn_lockings.order(Sequel.desc(:realized))
-                        .where(realized: date_range)
+        def inactive_in_date_range_order_realized_at_desc(date_range)
+          @conn_lockings.order(Sequel.desc(:realized_at))
+                        .where(realized_at: date_range)
                         .where(active: false)
         end
 
@@ -92,7 +96,7 @@ module Api
         # @return [Hash] the locking
         #
         def latest_active
-          locking = @conn_lockings.order(:realized)
+          locking = @conn_lockings.order(:realized_at)
                                   .where(active: true)
                                   .last
           locking || locking_never_locked
@@ -101,7 +105,7 @@ module Api
         private
 
         def locking_never_locked
-          { realized: DB::EARLIEST_BOOKING }
+          { realized_at: DB::EARLIEST_BOOKING }
         end
       end
     end

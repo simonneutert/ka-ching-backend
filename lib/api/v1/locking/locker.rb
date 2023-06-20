@@ -16,7 +16,7 @@ module Api
           @action = @lock_params.action
           @amount_cents_saldo_user_counted = @lock_params.amount_cents_saldo_user_counted
           @context = @lock_params.context
-          @realized = build_realized(@lock_params)
+          @realized_at = build_realized_at(@lock_params)
           raise unless @amount_cents_saldo_user_counted.positive?
         end
 
@@ -31,11 +31,11 @@ module Api
             @conn.run('LOCK TABLE bookings IN ACCESS EXCLUSIVE MODE')
             validate!
 
-            prelast_locking = load_latest_realized || last_active_locking_missing
+            prelast_locking = load_latest_realized_at || last_active_locking_missing
             prelast_locking_amount_cents_saldo_user_counted = prelast_locking[:amount_cents_saldo_user_counted] || 0
             saldo_cents_calculated = get_saldo_cents_calculated(prelast_locking,
                                                                 prelast_locking_amount_cents_saldo_user_counted)
-            bookings = all_bookings_from_range(prelast_locking[:realized], @realized)
+            bookings = all_bookings_from_range(prelast_locking[:realized_at], @realized_at)
             insert_locking!(saldo_cents_calculated: saldo_cents_calculated,
                             bookings: bookings.to_json,
                             context: @context.to_json)
@@ -49,8 +49,8 @@ module Api
         end
 
         def deposit_minus_withdraw(prelast_locking)
-          deposit = get_bookings_saldo_in_range(prelast_locking[:realized], @realized, 'deposit')
-          withdraw = get_bookings_saldo_in_range(prelast_locking[:realized], @realized, 'withdraw')
+          deposit = get_bookings_saldo_in_range(prelast_locking[:realized_at], @realized_at, 'deposit')
+          withdraw = get_bookings_saldo_in_range(prelast_locking[:realized_at], @realized_at, 'withdraw')
           deposit - withdraw
         end
 
@@ -58,30 +58,30 @@ module Api
           prelast_locking_amount_cents_saldo_user_counted + deposit_minus_withdraw(prelast_locking)
         end
 
-        def all_bookings_from_range(from_realized, until_realized, sort_by: :realized)
-          bookings = get_bookings_in_range(from_realized, until_realized, 'deposit')
-                     .concat(get_bookings_in_range(from_realized, until_realized, 'withdraw'))
+        def all_bookings_from_range(from_realized_at, until_realized_at, sort_by: :realized_at)
+          bookings = get_bookings_in_range(from_realized_at, until_realized_at, 'deposit')
+                     .concat(get_bookings_in_range(from_realized_at, until_realized_at, 'withdraw'))
           bookings.sort_by! { |booking| booking[sort_by] }
         end
 
-        def load_latest_realized
-          query_lockings(@conn).last_active_realized(before_date_or_time: @realized)
+        def load_latest_realized_at
+          query_lockings(@conn).last_active_realized_at(before_date_or_time: @realized_at)
         end
 
         def insert_locking!(saldo_cents_calculated:, bookings:, context: {})
           @conn_lockings.insert(saldo_cents_calculated: saldo_cents_calculated,
                                 amount_cents_saldo_user_counted: @amount_cents_saldo_user_counted,
-                                realized: @realized,
+                                realized_at: @realized_at,
                                 bookings_json: bookings,
                                 context: context.to_json)
         end
 
-        def get_bookings_in_range(from_realized, until_realized, action = 'deposit')
+        def get_bookings_in_range(from_realized_at, until_realized_at, action = 'deposit')
           raise ArgumentError unless %w[deposit withdraw].any?(action)
 
           @conn_bookings.where(action: action)
-                        .where { realized > from_realized }
-                        .where { realized <= until_realized }
+                        .where { realized_at > from_realized_at }
+                        .where { realized_at <= until_realized_at }
                         .all
         end
 
@@ -90,34 +90,34 @@ module Api
           raise ArgumentError unless %w[deposit withdraw].any?(action)
 
           @conn_bookings.where(action: action)
-                        .where { realized > earlies_date }
-                        .where { realized <= until_date }
+                        .where { realized_at > earlies_date }
+                        .where { realized_at <= until_date }
                         .select(Sequel.lit('sum(cast(amount_cents as int)) as saldo '))
                         .first[:saldo] || 0
         end
 
         def last_active_locking_missing
-          { realized: DB::EARLIEST_BOOKING }
+          { realized_at: DB::EARLIEST_BOOKING }
         end
 
-        def build_realized(lock_params)
+        def build_realized_at(lock_params)
           Time.new(lock_params.year, lock_params.month, lock_params.day)
         end
 
         def validate!
           validate_action!
-          locking_last_realized = query_lockings(@conn).latest_active
-          return if @realized > locking_last_realized[:realized]
+          locking_last_realized_at = query_lockings(@conn).latest_active
+          return if @realized_at > locking_last_realized_at[:realized_at]
 
-          validate_realized!(locking_last_realized)
-          raise Api::V1::Locking::LockingError.new(locking_last_realized),
+          validate_realized!(locking_last_realized_at)
+          raise Api::V1::Locking::LockingError.new(locking_last_realized_at),
                 'There is already a newer lock in place!'
         end
 
-        def validate_realized!(locking_last_realized)
-          return unless @realized == locking_last_realized[:realized]
+        def validate_realized!(locking_last_realized_at)
+          return unless @realized_at == locking_last_realized_at[:realized_at]
 
-          raise Api::V1::Locking::LockingError.new(locking_last_realized),
+          raise Api::V1::Locking::LockingError.new(locking_last_realized_at),
                 'There is already a lock in place for that exact day!'
         end
 

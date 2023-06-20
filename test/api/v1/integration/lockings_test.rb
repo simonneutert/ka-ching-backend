@@ -7,7 +7,7 @@ class TestLockings < ApiIntegrationHelperTest
   include Minitest::Hooks
 
   def type_locking?(locking)
-    valid_keys = %w[id saldo_cents_calculated amount_cents_saldo_user_counted realized created_at updated_at]
+    valid_keys = %w[id saldo_cents_calculated amount_cents_saldo_user_counted realized_at created_at updated_at]
     valid_keys.all? { |k| locking.key?(k) }
   end
 
@@ -91,7 +91,7 @@ class TestLockings < ApiIntegrationHelperTest
       id
       action
       amount_cents
-      realized
+      realized_at
       context
       created_at
       updated_at

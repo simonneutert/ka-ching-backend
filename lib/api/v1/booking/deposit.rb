@@ -33,7 +33,7 @@ module Api
             new_booking_id = @conn_bookings.insert(id: SecureRandom.uuid,
                                                    amount_cents: @booker.amount_cents,
                                                    action: @booker.action,
-                                                   realized: @booker.realized,
+                                                   realized_at: @booker.realized_at,
                                                    context: @booker.context.to_json)
 
             query_bookings(@conn).find_by(id: new_booking_id)
@@ -47,12 +47,12 @@ module Api
         end
 
         def validate_not_locked!
-          latest_locking_realized = query_lockings(@conn).latest_active[:realized]
-          unless @booker.realized > latest_locking_realized
+          latest_locking_realized_at = query_lockings(@conn).latest_active[:realized_at]
+          unless @booker.realized_at > latest_locking_realized_at
             raise BookerError, 'Booking not possible, locked for this day.'
           end
 
-          latest_locking_realized
+          latest_locking_realized_at
         end
       end
     end
