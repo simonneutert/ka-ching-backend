@@ -252,7 +252,7 @@ This project relies on database locking and how it works specifically in Postgre
 #### Project specific Settings
 
 - `RACK_ENV` - the environment, defaults to: `development`
-- `KACHING_DEMO_MODE` - the demo mode, defaults to: `false`, if set to `true`, the application will allow resets of a tenant's data
+- `KACHING_RESET_PROTECTION` - the demo mode, defaults to: `false`, if set to `true`, the application will allow resets of a tenant's data
 
 #### Puma Settings (for production)
 

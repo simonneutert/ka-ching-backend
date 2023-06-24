@@ -22,7 +22,7 @@ services:
       - DATABASE_USER=kaching
       - DATABASE_PASSWORD=kaching
       # - RACK_ENV=development
-      # - KACHING_DEMO_MODE=true
+      - KACHING_RESET_PROTECTION=false
     depends_on:
       - db
     ports:
