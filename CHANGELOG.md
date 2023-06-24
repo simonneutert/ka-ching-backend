@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [next] - unreleased
 
+- [#6](https://github.com/simonneutert/ka-ching-backend/pull/6) errors return a status and a message for caught errors of API request - [@simonneutert](https://github.com/simonneutert).
 - [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>).
 
 ## [0.2.1] - 2023-06-24

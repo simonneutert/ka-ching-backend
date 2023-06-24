@@ -39,7 +39,7 @@ end
 
 def rich_error_return(error, error_key)
   rich_return = error.send(error_key)
-  return { status: error } unless rich_return
+  return { status: error.class, message: error.to_s } unless rich_return
 
   { status: error.class,
     message: error.to_s,
