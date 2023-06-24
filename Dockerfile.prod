@@ -25,7 +25,8 @@ RUN groupadd --gid $gid $usergroup \
   && useradd --uid $uid --gid $uid -m $user 
 
 COPY --chown=$uid:$gid Gemfile* ${WORKDIR}/
-RUN bundle config set deployment 'true' && bundle config set without 'development test'
+RUN bundle config set deployment 'true' 
+# RUN bundle config set without 'development test'
 RUN bundle install -j4
 
 COPY --chown=$uid:$gid . .

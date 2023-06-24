@@ -54,8 +54,8 @@ class TestLockingsReset < ApiIntegrationHelperTest
 
     ### RESET
 
-    uri = '/ka-ching/api/v1/test/reset'
-    get(uri, {}, header_content_type_json)
+    uri = '/ka-ching/api/v1/admin/test/reset'
+    post(uri, {}, header_content_type_json)
 
     get '/ka-ching/api/v1/test/saldo'
 

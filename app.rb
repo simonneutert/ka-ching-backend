@@ -23,26 +23,18 @@ def parse_on_off(str)
   when 'true', 'on', 'yes', '1', 'enabled', 'enable', 'active', 'activated'
     true
   else
-    raise ArgumentError, "Invalid value for KACHING_DEMO_MODE: #{str}"
+    raise ArgumentError, "Invalid value for KACHING_RESET_PROTECTION: #{str}"
   end
 end
 
-def enabled_demo_mode?
-  val = ENV.fetch('KACHING_DEMO_MODE', nil)
+def reset_protection_enabled?
+  val = ENV.fetch('KACHING_RESET_PROTECTION', false)
   return false if val.nil?
 
   val_s = val.to_s
   return false if val_s.empty?
 
   parse_on_off(val_s)
-end
-
-def disabled_demo_mode?
-  !enabled_demo_mode?
-end
-
-def production_protection_enabled?
-  rack_env_production? && disabled_demo_mode?
 end
 
 def rich_error_return(error, error_key)
@@ -65,7 +57,7 @@ def get_lockings_query(conn, date_range, active, inactive)
 end
 
 class App < Roda
-  PRODUCTION_PROTECTION_ENABLED = production_protection_enabled?
+  RESET_PROTECTION_ENABLED = reset_protection_enabled?
 
   plugin :json, configure: ->(c) { c.engine = :alba }
   plugin :json_parser
@@ -128,13 +120,30 @@ class App < Roda
       r.on 'api' do
         r.on 'v1' do
           r.on 'admin' do
-            r.get String do |tenant_account_id|
-              database = "#{DB::DATABASE_TENANT_DATABASE_NAMESPACE}#{tenant_account_id}"
-              res = DB::DATABASE_SHARED_CONN[:tenants].where(tenant_db_id: database).first
-              return res if res
+            r.on String do |tenant_account_id|
+              r.get do
+                database = "#{DB::DATABASE_TENANT_DATABASE_NAMESPACE}#{tenant_account_id}"
+                res = DB::DATABASE_SHARED_CONN[:tenants].where(tenant_db_id: database).first
+                return res if res
 
-              response.status = 204
-              next
+                response.status = 204
+                next
+              end
+
+              r.post 'reset' do
+                next if RESET_PROTECTION_ENABLED
+
+                tenant_db_connector = Db::SequelTenantDbConnector.new(
+                  tenant_id: tenant_account_id,
+                  auto_init: false
+                )
+                resetter = Api::V1::Repository::DbPreparator.new(tenant_account_id)
+                resetter.reset!
+
+                { api: 'V1',
+                  health: :success,
+                  db: tenant_db_connector.connect_close(&:tables) }
+              end
             end
 
             r.post do
@@ -169,14 +178,16 @@ class App < Roda
             r.get 'all' do
               page = r.params['page']
               page = 1 if page.nil?
-              per_page = 1000
+              per_page = r.params['per_page']
+              per_page = 1000 if per_page.nil?
               result_paginated(DB::DATABASE_SHARED_CONN[:tenants], page.to_i, per_page.to_i)
             end
 
             r.get 'active' do
               page = r.params['page']
               page = 1 if page.nil?
-              per_page = 1000
+              per_page = r.params['per_page']
+              per_page = 1000 if per_page.nil?
               q = DB::DATABASE_SHARED_CONN[:tenants].where(active: true)
               result_paginated(q, page.to_i, per_page.to_i)
             end
@@ -184,7 +195,8 @@ class App < Roda
             r.get 'inactive' do
               page = r.params['page']
               page = 1 if page.nil?
-              per_page = 1000
+              per_page = r.params['per_page']
+              per_page = 1000 if per_page.nil?
               q = DB::DATABASE_SHARED_CONN[:tenants].where(active: [false, nil])
               result_paginated(q, page.to_i, per_page.to_i)
             end
@@ -205,16 +217,6 @@ class App < Roda
               tenant_id: tenant_account_id,
               auto_init: false
             )
-
-            r.on 'reset' do
-              next if PRODUCTION_PROTECTION_ENABLED
-
-              resetter = Api::V1::Repository::DbPreparator.new(tenant_account_id)
-              tenant_db_connector = resetter.reset!
-              { api: 'V1',
-                health: :success,
-                db: tenant_db_connector.connect_close(&:tables) }
-            end
 
             tenant_db_connector.connect_close do |conn|
               conn.extension(:pagination)
