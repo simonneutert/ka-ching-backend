@@ -6,6 +6,13 @@ The much-sought-after yet elusive cash register system is now finally available 
 
 [![ruby](https://github.com/simonneutert/ka-ching-backend/actions/workflows/ruby.yml/badge.svg)](https://github.com/simonneutert/ka-ching-backend/actions/workflows/ruby.yml)
 
+## Check out the demo
+
+Don't wanna read all the texts below?  
+You want to be inspired and see for yourseld how ka-ching-backend and ka-ching-client (both in Ruby) could be used in a real world project?
+
+➡️ Visit [ka-ching-demo](https://github.com/simonneutert/ka-ching-demo) and fire up that `docker-compose` 🐳🔥 it's still WIP, but you will get to use most of the features by now already! 💪 🫨
+
 ### Quotes to live by (and die for)<!-- omit in toc -->
 
 > "Credit card goes brrrrrrr,  
