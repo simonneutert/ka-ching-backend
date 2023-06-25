@@ -11,7 +11,8 @@ The much-sought-after yet elusive cash register system is now finally available 
 Don't wanna read all the texts below?  
 You want to be inspired and see for yourseld how ka-ching-backend and ka-ching-client (both in Ruby) could be used in a real world project?
 
-➡️ Visit [ka-ching-demo](https://github.com/simonneutert/ka-ching-demo) and fire up that `docker-compose` 🐳🔥 it's still WIP, but you will get to use most of the features by now already! 💪 🫨
+➡️ Visit [ka-ching-demo](https://github.com/simonneutert/ka-ching-demo) and fire up that `docker-compose` 🐳🔥  
+it's still WIP, but you will get to use most of the features by now already! 💪 🫨
 
 ### Quotes to live by (and die for)<!-- omit in toc -->
 
