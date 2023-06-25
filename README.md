@@ -6,7 +6,7 @@ The much-sought-after yet elusive cash register system is now finally available 
 
 [![ruby](https://github.com/simonneutert/ka-ching-backend/actions/workflows/ruby.yml/badge.svg)](https://github.com/simonneutert/ka-ching-backend/actions/workflows/ruby.yml)
 
-## Check out the demo
+### Check out the demo<!-- omit in toc -->
 
 Don't wanna read all the texts below?  
 You want to be inspired and see for yourseld how ka-ching-backend and ka-ching-client (both in Ruby) could be used in a real world project?
