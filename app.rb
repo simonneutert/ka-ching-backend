@@ -259,7 +259,7 @@ class App < Roda
                   locker = Api::V1::Locking::Locker.new(conn, r.params)
                   newest_locking_id = locker.lock!
                   newest_locking = query_lockings(conn).find_by(id: newest_locking_id)
-                rescue Api::V1::Locking::LockingError => e
+                rescue Api::V1::Locking::LockingError, Api::V1::Locking::NegativeSaldoError => e
                   response.status = 403
                   rich_error_return(e, :error_obj)
                 rescue Sequel::CheckConstraintViolation => e

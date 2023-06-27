@@ -32,6 +32,38 @@ class TestLockings < ApiIntegrationHelperTest
   #
   # Saldo cannot be negative.
   #
+  def test_no_negative_saldo_with_lock_inbetween
+    create_bookings!
+
+    uri = '/ka-ching/api/v1/test/bookings'
+    req_data = { amount_cents: 1500,
+                 action: :withdraw,
+                 year: 2022, month: 11, day: 11,
+                 context: { account: 1315, text: 'test' } }
+    post(uri, JSON.generate(req_data), header_content_type_json)
+    json_body = JSON.parse(last_response.body)
+
+    assert_equal(0, json_body['saldo'])
+    assert_predicate last_response, :ok?
+
+    uri = '/ka-ching/api/v1/test/lockings'
+    req_data = { amount_cents_saldo_user_counted: 1000,
+                 action: :lock,
+                 year: 2022, month: 11, day: 3 }
+    post(uri, JSON.generate(req_data), header_content_type_json)
+
+    refute_predicate last_response, :ok?
+
+    assert_equal(403, last_response.status)
+    json_body = JSON.parse(last_response.body)
+
+    assert_equal('Api::V1::Locking::LockingError', json_body['status'])
+    assert_equal('Saldo would be negative after locking', json_body['message'])
+  end
+
+  #
+  # Saldo cannot be negative inbetween.
+  #
   def test_no_negative_saldo_with_lock
     create_bookings!
 

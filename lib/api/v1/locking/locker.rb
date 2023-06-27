@@ -35,6 +35,7 @@ module Api
             prelast_locking_amount_cents_saldo_user_counted = prelast_locking[:amount_cents_saldo_user_counted] || 0
             saldo_cents_calculated = get_saldo_cents_calculated(prelast_locking,
                                                                 prelast_locking_amount_cents_saldo_user_counted)
+
             bookings = all_bookings_from_range(prelast_locking[:realized_at], @realized_at)
             insert_locking!(saldo_cents_calculated: saldo_cents_calculated,
                             bookings: bookings.to_json,
@@ -43,6 +44,24 @@ module Api
         end
 
         private
+
+        def future_saldo
+          active_bookings = Api::V1::Repository::Bookings.new(@conn).active(@realized_at)
+          active_bookings_grouped = active_bookings.group_by { |booking| booking[:action] }
+          future_deposit_saldo(active_bookings_grouped) - future_withdraw_saldo(active_bookings_grouped)
+        end
+
+        def future_deposit_saldo(active_bookings_grouped)
+          return 0 unless active_bookings_grouped['deposit']
+
+          active_bookings_grouped['deposit'].sum { |booking| booking[:amount_cents] }
+        end
+
+        def future_withdraw_saldo(active_bookings_grouped)
+          return 0 unless active_bookings_grouped['withdraw']
+
+          active_bookings_grouped['withdraw'].sum { |booking| booking[:amount_cents] }
+        end
 
         def cast_params!(params)
           Api::V1::Locking::ParamsCaster.new(params)
@@ -106,12 +125,20 @@ module Api
 
         def validate!
           validate_action!
+          validate_future_saldo!
           locking_last_realized_at = query_lockings(@conn).latest_active
           return if @realized_at > locking_last_realized_at[:realized_at]
 
           validate_realized!(locking_last_realized_at)
           raise Api::V1::Locking::LockingError.new(locking_last_realized_at),
                 'There is already a newer lock in place!'
+        end
+
+        def validate_future_saldo!
+          return unless (@amount_cents_saldo_user_counted + future_saldo).negative?
+
+          raise Api::V1::Locking::LockingError.new(@amount_cents_saldo_user_counted + future_saldo),
+                'Saldo would be negative after locking'
         end
 
         def validate_realized!(locking_last_realized_at)
