@@ -5,16 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [next] - unreleased
+## [0.3.0] - 2023-06-27
 
 ### Fixed
 
-- [#10](https://github.com/simonneutert/ka-ching-backend/pull/10) locking in between can cause saldo to become negative - [@simonneutert](https://github.com/simonneutert).
+- [#10](https://github.com/simonneutert/ka-ching-backend/pull/10) locking in between bookings can cause saldo to become negative (edge case / theoretical) - [@simonneutert](https://github.com/simonneutert).
 
 ### Changed
 
 - [#6](https://github.com/simonneutert/ka-ching-backend/pull/6) errors return a status and a message for caught errors of API request - [@simonneutert](https://github.com/simonneutert).
-- [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>).
 
 ## [0.2.1] - 2023-06-24
 
