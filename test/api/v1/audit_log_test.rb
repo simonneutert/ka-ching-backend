@@ -13,8 +13,6 @@ class TestAuditLoggable < ApiIntegrationHelperTest
     @table_name = :lockings
     @before_state = { 'active' => true }
     @result_state = { 'active' => false }
-    @before_state_json = @before_state.to_json
-    @result_state_json = @result_state.to_json
   end
 
   #
@@ -29,8 +27,8 @@ class TestAuditLoggable < ApiIntegrationHelperTest
   def test_create_audit_log_with_single_object_as_result_state
     db.transaction do
       db[:audit_logs].insert(table_referenced: @table_name.to_s,
-                             environment_snapshot: @before_state_json,
-                             log_entry: @result_state_json)
+                             environment_snapshot: @before_state.to_json,
+                             log_entry: @result_state.to_json)
     end
 
     assert_equal(1, db[:audit_logs].count)
@@ -42,12 +40,11 @@ class TestAuditLoggable < ApiIntegrationHelperTest
   def test_create_audit_log_with_complex_hash_of_objects_as_result_state
     @result_state = { 'object1' => { 'active' => false },
                       'object2' => { 'active' => true } }
-    @result_state_json = @result_state.to_json
 
     db.transaction do
       db[:audit_logs].insert(table_referenced: @table_name.to_s,
-                             environment_snapshot: @before_state_json,
-                             log_entry: @result_state_json)
+                             environment_snapshot: @before_state.to_json,
+                             log_entry: @result_state.to_json)
     end
 
     assert_equal(1, db[:audit_logs].count)

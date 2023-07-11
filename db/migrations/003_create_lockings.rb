@@ -9,7 +9,7 @@ Sequel.migration do
       Integer :amount_cents_saldo_user_counted, null: false
       TrueClass :active, default: true, index: true, null: false
       DateTime :realized_at, index: true
-      column :bookings_json, :jsonb, null: false
+      column :bookings, :jsonb, null: false
       column :context, :jsonb, null: false
 
       DateTime :created_at, default: Sequel::CURRENT_TIMESTAMP, index: true

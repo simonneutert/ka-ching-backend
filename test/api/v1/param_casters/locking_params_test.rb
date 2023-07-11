@@ -50,7 +50,7 @@ class TestLockingParams < ApiIntegrationHelperTest
     assert_equal(2022, locking.year)
     assert_equal(10, locking.month)
     assert_equal(11, locking.day)
-    assert_kind_of(String, locking.context.to_json)
+    assert_kind_of(Hash, locking.context)
 
     assert_empty(%i[@action @amount_cents_saldo_user_counted @year @month @day @context] - locking.instance_variables)
   end
