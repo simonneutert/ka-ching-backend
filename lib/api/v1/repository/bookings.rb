@@ -44,7 +44,9 @@ module Api
         # @return [Array<Hash>] list of bookings
         #
         def active(last_locking_realized_at, order: :created_at)
-          @conn_bookings.where { realized_at > last_locking_realized_at }.order(order).all
+          @conn_bookings.where { realized_at > last_locking_realized_at }
+                        .order(order)
+                        .all
         end
 
         #
@@ -56,7 +58,10 @@ module Api
         # @return [Array<Hash>] list of bookings
         #
         def active_paginated(last_locking_realized_at, order: :created_at, page: 1, per_page: 100)
-          @conn_bookings.paginate(page, per_page).where { realized_at > last_locking_realized_at }.order(order).all
+          @conn_bookings.paginate(page, per_page)
+                        .where { realized_at > last_locking_realized_at }
+                        .order(order)
+                        .all
         end
       end
     end
