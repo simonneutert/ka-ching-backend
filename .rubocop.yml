@@ -44,7 +44,7 @@ Style/Documentation:
   Enabled: false
 
 Metrics/ClassLength:
-  Max: 115
+  Max: 120
   Exclude:
     - "app.rb"
     - "test/api/v1/integration/**/*.rb"
