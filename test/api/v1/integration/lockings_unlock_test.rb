@@ -67,7 +67,7 @@ class TestLockingsUnlock < ApiIntegrationHelperTest
                  year: 2022, month: 11, day: 2 }
     post(uri, JSON.generate(req_data), header_content_type_json)
     json_body = JSON.parse(last_response.body)
-    bookings = JSON.parse(json_body['record']['bookings_json'])
+    bookings = json_body['record']['bookings']
 
     assert_equal(-499, json_body['diff'])
     assert_equal(2, bookings.count)
@@ -94,7 +94,7 @@ class TestLockingsUnlock < ApiIntegrationHelperTest
                  year: 2022, month: 11, day: 2 }
     post(uri, JSON.generate(req_data), header_content_type_json)
     json_body = JSON.parse(last_response.body)
-    bookings = JSON.parse(json_body['record']['bookings_json'])
+    bookings = json_body['record']['bookings']
 
     assert_equal(1, json_body['diff'])
     assert_equal(2, bookings.count)
@@ -123,7 +123,7 @@ class TestLockingsUnlock < ApiIntegrationHelperTest
 
     assert_equal(-1, json_body['diff'])
     json_body = JSON.parse(last_response.body)
-    bookings = JSON.parse(json_body['record']['bookings_json'])
+    bookings = json_body['record']['bookings']
 
     assert_equal(1, bookings.count)
 
@@ -145,8 +145,8 @@ class TestLockingsUnlock < ApiIntegrationHelperTest
     latest_locking, *other_bookings = json_body['items']
     first_locking = other_bookings.last
 
-    assert_equal(2, JSON.parse(first_locking['bookings_json']).count)
-    assert_equal(1, JSON.parse(latest_locking['bookings_json']).count)
+    assert_equal(2, first_locking['bookings'].count)
+    assert_equal(1, latest_locking['bookings'].count)
 
     uri = '/ka-ching/api/v1/test/lockings'
     delete(uri, {}, header_content_type_json)
@@ -172,9 +172,9 @@ class TestLockingsUnlock < ApiIntegrationHelperTest
 
     json_body = JSON.parse(last_response.body)
 
-    bookings_in_lock = json_body.dig('record', 'bookings_json')
+    bookings_in_lock = json_body.dig('record', 'bookings')
 
-    assert_equal 2, JSON.parse(bookings_in_lock).count
+    assert_equal 2, bookings_in_lock.count
     assert_equal(-499, json_body['diff'])
 
     uri = '/ka-ching/api/v1/test/lockings'
@@ -200,9 +200,9 @@ class TestLockingsUnlock < ApiIntegrationHelperTest
 
     assert_predicate last_response, :ok?
     json_body = JSON.parse(last_response.body)
-    bookings_in_lock = json_body.dig('record', 'bookings_json')
+    bookings_in_lock = json_body.dig('record', 'bookings')
 
-    assert_equal 1, JSON.parse(bookings_in_lock).count
+    assert_equal 1, bookings_in_lock.count
     assert_equal 0, json_body['diff']
 
     uri = '/ka-ching/api/v1/test/lockings'
@@ -218,9 +218,9 @@ class TestLockingsUnlock < ApiIntegrationHelperTest
     assert_predicate last_response, :ok?
     json_body = JSON.parse(last_response.body)
 
-    bookings_in_lock = json_body.dig('record', 'bookings_json')
+    bookings_in_lock = json_body.dig('record', 'bookings')
 
-    assert_equal 1, JSON.parse(bookings_in_lock).count
+    assert_equal 1, bookings_in_lock.count
     assert_equal(-1, json_body['diff'])
 
     uri = '/ka-ching/api/v1/test/lockings'

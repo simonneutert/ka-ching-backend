@@ -43,6 +43,18 @@ class TestTenantsPagination < ApiIntegrationHelperTest
     assert_equal(1000, json_body['page_size'])
     assert(json_body['items'].is_a?(Array))
     refute_empty(json_body['items'])
-    assert_equal(%w[id tenant_db_id active current_state next_state context created_at updated_at].sort, json_body['items'][0].keys.sort)
+    assert_equal(
+      %w[
+        id
+        tenant_db_id
+        active
+        current_state
+        next_state
+        context
+        created_at
+        updated_at
+      ].sort,
+      json_body['items'][0].keys.sort
+    )
   end
 end

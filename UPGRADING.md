@@ -1,5 +1,11 @@
 # Upgrading ka-ching-backend
 
+## >= 0.4.0
+
+### Changes
+
+- [#15](https://github.com/simonneutert/ka-ching-backend/pull/15) Sequel's pg_json extension was added. This is a breaking change, as the database schema was changed, though no migration is provided. Please update your database schema manually or drop the database and start from scratch.
+
 ## 0.2.0 to 0.2.1
 
 ### Changes

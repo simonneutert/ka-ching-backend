@@ -734,7 +734,7 @@ components:
               type: boolean
             realized_at:
               type: string
-            bookings_json:
+            bookings:
               type: string
             context:
               type: string
@@ -748,7 +748,7 @@ components:
             - amount_cents_saldo_user_counted
             - active
             - realized_at
-            - bookings_json
+            - bookings
             - context
             - created_at
             - updated_at
@@ -776,7 +776,7 @@ components:
           type: boolean
         realized_at:
           type: string
-        bookings_json:
+        bookings:
           type: string
         context:
           type: string
@@ -791,7 +791,7 @@ components:
         - amount_cents_saldo_user_counted
         - active
         - realized_at
-        - bookings_json
+        - bookings
         - context
         - created_at
         - updated_at
@@ -908,7 +908,7 @@ components:
               realized_at:
                 type: string
                 example: "2020-01-01"
-              bookings_json:
+              bookings:
                 type: string
                 example: '[{"id":1,"action":"lock","amount_cents":1000,"realized_at":"2020-01-01","context":"{}","created_at":"2020-01-01T00:00:00.000Z","updated_at":"2020-01-01T00:00:00.000Z"}]'
               context:

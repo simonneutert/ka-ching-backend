@@ -38,8 +38,8 @@ module Api
 
             bookings = all_bookings_from_range(prelast_locking[:realized_at], @realized_at)
             insert_locking!(saldo_cents_calculated: saldo_cents_calculated,
-                            bookings: bookings.to_json,
-                            context: @context.to_json)
+                            bookings: bookings,
+                            context: @context)
           end
         end
 
@@ -88,10 +88,14 @@ module Api
         end
 
         def insert_locking!(saldo_cents_calculated:, bookings:, context: {})
+          raise ArgumentError unless saldo_cents_calculated.is_a?(Integer)
+          raise ArgumentError unless bookings.is_a?(Array)
+          raise ArgumentError unless context.is_a?(Hash)
+
           @conn_lockings.insert(saldo_cents_calculated: saldo_cents_calculated,
                                 amount_cents_saldo_user_counted: @amount_cents_saldo_user_counted,
                                 realized_at: @realized_at,
-                                bookings_json: bookings,
+                                bookings: bookings.to_json,
                                 context: context.to_json)
         end
 

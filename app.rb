@@ -219,8 +219,12 @@ class App < Roda
             )
 
             tenant_db_connector.connect_close do |conn|
-              conn.extension(:pagination)
-              conn.extension(:pg_extended_date_support)
+              # SETUP the database connection for a specific's tenant interaction
+              # and load the extensions we need
+              conn.extension(:pg_extended_date_support,
+                             :constraint_validations,
+                             :pagination,
+                             :pg_json)
 
               r.on 'saldo' do
                 { saldo: query_saldos(conn).sum_up }
@@ -228,8 +232,10 @@ class App < Roda
 
               r.on 'bookings' do
                 r.on 'unlocked' do
-                  { bookings: query_bookings(conn).active(query_lockings(conn)
-                                                                 .latest_active[:realized_at]) }
+                  latest_active_locking = query_lockings(conn).latest_active[:realized_at]
+                  bookings = query_bookings(conn).active(latest_active_locking)
+
+                  { bookings: bookings }
                 end
 
                 r.post do

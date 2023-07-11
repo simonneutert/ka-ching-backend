@@ -103,7 +103,7 @@ class TestLockings < ApiIntegrationHelperTest
     assert_equal(1501, json_body['record']['amount_cents_saldo_user_counted'])
     assert_equal(2000, json_body['record']['saldo_cents_calculated'])
 
-    locked_bookings = JSON.parse(json_body['record']['bookings_json'])
+    locked_bookings = json_body['record']['bookings']
     locked_booking = locked_bookings.first
 
     # try deletion of locked booking

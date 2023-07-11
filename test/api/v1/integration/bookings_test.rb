@@ -270,7 +270,7 @@ class TestBookings < ApiIntegrationHelperTest
     assert(json_body['status'])
     assert_kind_of(Hash, json_body['record'])
     assert_equal(uuid_of_last_booking, json_body['record']['deleted']['id'])
-    assert_kind_of(String, json_body['record']['deleted']['context'])
+    assert_kind_of(Hash, json_body['record']['deleted']['context'])
 
     uri = '/ka-ching/api/v1/test/lockings'
     req_data = { amount_cents_saldo_user_counted: 1999, action: :lock,

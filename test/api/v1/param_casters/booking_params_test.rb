@@ -46,7 +46,7 @@ class TestBookingParams < ApiIntegrationHelperTest
     assert_equal(2022, booking.year)
     assert_equal(10, booking.month)
     assert_equal(11, booking.day)
-    assert_kind_of(String, booking.context.to_json)
+    assert_kind_of(Hash, booking.context)
     assert_empty(%i[@action @amount_cents @year @month @day @context] - booking.instance_variables)
   end
 end
