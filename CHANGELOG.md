@@ -5,10 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [next] - unreleased
+## [0.4.0] - 2023-07-11
 
 - [#15](https://github.com/simonneutert/ka-ching-backend/pull/15) implements pg_json extension to quicker deserialize json columns - [@simonneutert](https://github.com/simonneutert).
-- [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>).
 
 ## [0.3.0] - 2023-06-27
 
