@@ -17,7 +17,7 @@ module Api
           @amount_cents_saldo_user_counted = @lock_params.amount_cents_saldo_user_counted
           @context = @lock_params.context
           @realized_at = build_realized_at(@lock_params)
-          raise unless @amount_cents_saldo_user_counted.positive?
+          validate_on_initialize!
         end
 
         #
@@ -157,6 +157,18 @@ module Api
 
           raise Api::V1::Locking::LockingError,
                 "Action needs to be 'lock'!"
+        end
+
+        # validates what's possible on initialize
+        #
+        # @raise [Api::V1::Locking::LockingError] unless amount is positive
+        #
+        # @return [TrueClass]
+        #
+        def validate_on_initialize!
+          return true if @amount_cents_saldo_user_counted.positive?
+
+          raise Api::V1::Locking::LockingError, "Amount needs to be positive! #{@amount_cents_saldo_user_counted}"
         end
       end
     end
