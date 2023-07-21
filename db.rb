@@ -35,7 +35,14 @@ module DB
     DATABASE_TENANT_BLANK_CONN = db_connection(DATABASE_NAME_BLANK)
     DATABASE_TENANT_BLANK_CONN.extension(:constraint_validations, :pg_json)
     DATABASE_TENANT_BLANK_CONN.extension(:pagination)
+  rescue Sequel::DatabaseConnectionError => e
+    puts e
+    raise e unless e.message.include?('does not exist')
+  rescue StandardError => e
+    puts e
+  end
 
+  begin
     DATABASE_TENANT_TEST_CONN = db_connection("#{DATABASE_TENANT_DATABASE_NAMESPACE}test")
     DATABASE_TENANT_TEST_CONN.extension(:constraint_validations, :pg_json)
     DATABASE_TENANT_TEST_CONN.extension(:pagination)
