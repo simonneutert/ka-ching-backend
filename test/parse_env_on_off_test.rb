@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class TestParseOnOff < MiniTest::Test
+class TestParseOnOff < Minitest::Test
   def test_parse_on_off
     # Test all valid ON values
     assert parse_on_off('true')
