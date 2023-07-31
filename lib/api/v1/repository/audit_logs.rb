@@ -36,7 +36,11 @@ module Api
         #
         def for_month(year, month)
           from = Time.new(year, month, 1)
-          to = Time.new(year, month + 1, 1)
+          begin
+            to = Time.new(year, month + 1, 1)
+          rescue ArgumentError
+            to = Time.new(year + 1, 1, 1)
+          end
           to_minus_a_second = to - 1
 
           @conn_audit_logs.where(created_at: from..to_minus_a_second).all
