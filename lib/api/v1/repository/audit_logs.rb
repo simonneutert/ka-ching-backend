@@ -53,7 +53,11 @@ module Api
         #
         def for_day(year, month, day)
           from = Time.new(year, month, day)
-          to = Time.new(year, month, day + 1)
+          begin
+            to = Time.new(year, month, day + 1)
+          rescue ArgumentError
+            to = Time.new(year, month + 1, 1)
+          end
           to_minus_a_second = to - 1
           @conn_audit_logs.where(created_at: from..to_minus_a_second).all
         end
