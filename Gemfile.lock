@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    alba (2.3.0)
+    alba (2.4.1)
     ast (2.4.2)
     backport (1.2.0)
     benchmark (0.2.1)
@@ -112,7 +112,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  alba (~> 2.3)
+  alba (~> 2.4)
   minitest (~> 5.19)
   minitest-hooks (~> 1.5)
   oj (~> 3.15)
