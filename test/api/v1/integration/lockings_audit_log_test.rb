@@ -66,21 +66,21 @@ class TestLockingsAuditLog < ApiIntegrationHelperTest
     refute_empty json_body
     assert json_body.is_a?(Hash)
     assert type_locking?(json_body)
-    refute(json_body['active'])
+    refute_operator(json_body, :[], 'active')
     assert_equal(0, DB::DATABASE_TENANT_TEST_CONN[:lockings].where(active: true).count)
 
     assert_equal(1, DB::DATABASE_TENANT_TEST_CONN[:audit_logs].count)
     audit_log = DB::DATABASE_TENANT_TEST_CONN[:audit_logs].first
 
     assert_equal('lockings', audit_log[:table_referenced])
-    assert audit_log[:environment_snapshot]
+    assert_operator audit_log, :[], :environment_snapshot
     assert audit_log[:environment_snapshot].is_a?(Sequel::Postgres::JSONBHash)
     assert type_locking?(audit_log[:environment_snapshot])
-    assert audit_log[:log_entry]
+    assert_operator audit_log, :[], :log_entry
     assert audit_log[:log_entry].is_a?(Sequel::Postgres::JSONBHash)
     assert type_locking?(audit_log[:log_entry])
-    assert audit_log[:created_at]
-    assert audit_log[:updated_at]
+    assert_operator audit_log, :[], :created_at
+    assert_operator audit_log, :[], :updated_at
 
     get('/ka-ching/api/v1/test/auditlogs', { year: Date.today.year })
 
