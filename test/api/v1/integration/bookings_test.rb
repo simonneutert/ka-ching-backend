@@ -267,7 +267,7 @@ class TestBookings < ApiIntegrationHelperTest
     assert_equal 200, last_response.status
     json_body = JSON.parse(last_response.body)
 
-    assert(json_body['status'])
+    assert_operator(json_body, :[], 'status')
     assert_kind_of(Hash, json_body['record'])
     assert_equal(uuid_of_last_booking, json_body['record']['deleted']['id'])
     assert_kind_of(Hash, json_body['record']['deleted']['context'])
