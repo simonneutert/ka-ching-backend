@@ -58,7 +58,7 @@ GEM
     rexml (3.2.6)
     roda (3.72.0)
       rack
-    rubocop (1.56.3)
+    rubocop (1.56.4)
       base64 (~> 0.1.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -105,7 +105,7 @@ GEM
       yard (~> 0.9, >= 0.9.24)
     thor (1.2.2)
     tilt (2.3.0)
-    unicode-display_width (2.4.2)
+    unicode-display_width (2.5.0)
     webrick (1.8.1)
     yard (0.9.34)
 
