@@ -5,9 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [next] - unreleased
+## [0.4.2] - 2023-10-09
 
-- [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>).
+- [#45](https://github.com/simonneutert/ka-ching-backend/pull/45) Bump gems via `bundle update` - [@simonneutert](https://github.com/simonneutert).
+- [#44](https://github.com/simonneutert/ka-ching-backend/pull/44) Bump rubocop from 1.56.3 to 1.56.4.
+- [#43](https://github.com/simonneutert/ka-ching-backend/pull/43) Bump sequel from 5.72.0 to 5.73.0.
+- [#42](https://github.com/simonneutert/ka-ching-backend/pull/42) Bump rubocop-minitest from 0.32.1 to 0.32.2.
+- [#41](https://github.com/simonneutert/ka-ching-backend/pull/41) Bump puma from 6.3.1 to 6.4.0.
+- [#40](https://github.com/simonneutert/ka-ching-backend/pull/40) Bump rubocop-minitest from 0.31.1 to 0.32.1.
+- [#39](https://github.com/simonneutert/ka-ching-backend/pull/39) Bump rubocop-performance from 1.19.0 to 1.19.1.
+
+## [0.4.1] - 2023-09-16
+
+Upgrades Dependencies.
 
 ## [0.4.0] - 2023-07-11
 
