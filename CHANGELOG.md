@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [next] - unreleased
+
+- [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>).
+
 ## [0.4.2] - 2023-10-09
 
 - [#45](https://github.com/simonneutert/ka-ching-backend/pull/45) Bump gems via `bundle update` - [@simonneutert](https://github.com/simonneutert).
