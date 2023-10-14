@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'alba', '~> 2.4'
+gem 'alba', '~> 3.0'
 gem 'oj', '~> 3.16'
 gem 'puma', '~> 6.4'
 gem 'rack-unreloader', '~> 2.0'

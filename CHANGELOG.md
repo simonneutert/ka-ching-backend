@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [next] - unreleased
 
 - [#46](https://github.com/simonneutert/ka-ching-backend/pull/46) Bump roda, rubocop, alba and bundler itself - [@simonneutert](https://github.com/simonneutert).
+- [#47](https://github.com/simonneutert/ka-ching-backend/pull/47) Upgrade alba gem to v3+ - [@simonneutert](https://github.com/simonneutert).
+
 - [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>).
 
 ## [0.4.2] - 2023-10-09
