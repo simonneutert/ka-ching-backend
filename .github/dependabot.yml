@@ -12,5 +12,5 @@ updates:
       day: "monday"
       time: "12:00"
       timezone: "Europe/Berlin"
-      assignees:
-        - "simonneutert"
+    assignees:
+      - "simonneutert"
