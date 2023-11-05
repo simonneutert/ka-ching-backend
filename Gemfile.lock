@@ -80,7 +80,7 @@ GEM
     rubocop-sequel (0.3.4)
       rubocop (~> 1.0)
     ruby-progressbar (1.13.0)
-    sequel (5.73.0)
+    sequel (5.74.0)
       bigdecimal
     sequel_pg (1.17.1)
       pg (>= 0.18.0, != 1.2.0)
@@ -130,7 +130,7 @@ DEPENDENCIES
   rubocop-performance (~> 1.19)
   rubocop-rake (~> 0.6.0)
   rubocop-sequel (~> 0.3.4)
-  sequel (~> 5.73)
+  sequel (~> 5.74)
   sequel_pg (~> 1.17)
   solargraph
 
