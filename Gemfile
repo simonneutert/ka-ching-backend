@@ -15,7 +15,7 @@ gem 'sequel', '~> 5.74'
 gem 'sequel_pg', '~> 1.17'
 
 group :development do
-  gem 'rubocop', '~> 1.57', require: false
+  gem 'rubocop', '~> 1.58', require: false
   gem 'rubocop-minitest', '~> 0.33.0', require: false
   gem 'rubocop-performance', '~> 1.19', require: false
   gem 'rubocop-rake', '~> 0.6.0', require: false
