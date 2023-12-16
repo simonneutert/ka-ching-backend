@@ -73,6 +73,7 @@ You can find it on GitHub: [ka-ching-client](https://github.com/simonneutert/ka-
   - [Run development](#run-development)
   - [Run the tests](#run-the-tests)
   - [Run production](#run-production)
+    - [Optional: use jemalloc2 for garbage collection](#optional-use-jemalloc2-for-garbage-collection)
     - [Postgres Tuning Tools](#postgres-tuning-tools)
 - [Abstractions](#abstractions)
   - [Bookings](#bookings)
@@ -292,6 +293,58 @@ Make sure you have the described environment variables set or match the defaults
 ### Run production
 
 Make sure you have the described environment variables set or match the defaults described above.
+
+#### Optional: use jemalloc2 for garbage collection
+
+Add this environment variable
+
+`LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2`
+
+to your Docker startup script (that might be a customized docker-compose.yml). 
+
+The part regarding the architecture might be different on your machine. `x86_64-linux-gnu` should be replaced with `aarch64-linux-gnu` on an M1 Mac.
+
+As an example:
+
+<details><summary>Toggle me!</summary>
+
+```yml
+version: '3.1'
+
+services:
+  db:
+    image: postgres:alpine
+    restart: always
+    environment:
+      POSTGRES_USER: kaching
+      POSTGRES_PASSWORD: kaching
+      LC_ALL: C.UTF-8
+      LANG: en_US.UTF-8
+
+  api:
+    image: ghcr.io/simonneutert/ka-ching-backend:main
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    restart: always
+    environment:
+      - DATABASE_URL=db
+      - DATABASE_USER=kaching
+      - DATABASE_PASSWORD=kaching
+      # - RACK_ENV=development
+      - KACHING_RESET_PROTECTION=false
+      - LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2 # Your architecture (x86_64-linux-gnu) might be different on an M1 Mac it would be aarch64-linux-gnu
+    depends_on:
+      - db
+    ports:
+      - 9292:9292
+    expose:
+      - 9292
+```
+
+</details>
+
+
 
 #### Postgres Tuning Tools
 
