@@ -36,7 +36,7 @@ module Api
       # @return [Object] the casted object as the given type
       #
       def extrude!
-        @obj_attributes.each do |attr, (type, opts)| # rubocop:disable Style/HashEachMethods
+        @obj_attributes.each do |attr, (type, opts)|
           instance_variable_set("@#{attr}", dynamic_cast(attr, type))
         rescue KeyError => e
           raise e unless opts && opts[:optional]
