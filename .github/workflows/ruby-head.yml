@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   ruby-qa:
@@ -36,7 +33,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: ["ruby-3.2"]
+        ruby: ["ruby-head"]
         os: [macos-latest, ubuntu-latest]
 
     steps:
