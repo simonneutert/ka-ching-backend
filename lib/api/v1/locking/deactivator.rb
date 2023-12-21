@@ -40,7 +40,7 @@ module Api
         private
 
         def query_find_by_id(id)
-          @conn_lockings.where(id: id)
+          @conn_lockings.where(id:)
         end
 
         def query_find_by_id_first(id)

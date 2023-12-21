@@ -235,7 +235,7 @@ class App < Roda
                   latest_active_locking = query_lockings(conn).latest_active[:realized_at]
                   bookings = query_bookings(conn).active(latest_active_locking)
 
-                  { bookings: bookings }
+                  { bookings: }
                 end
 
                 r.post do
@@ -272,7 +272,7 @@ class App < Roda
                   response.status = 403
                   message = e.to_s
                   message = 'Saldo cannot be negative!' if lock_params.amount_cents_saldo_user_counted.negative?
-                  { error: e.class, message: message }
+                  { error: e.class, message: }
                 else
                   { status: !newest_locking_id.nil?,
                     saldo: newest_locking[:amount_cents_saldo_user_counted],
@@ -301,7 +301,7 @@ class App < Roda
                     q = get_lockings_query(conn, date_range, active, inactive)
                     result_paginated(q, Integer(page), Integer(per_page))
                   else
-                    query_lockings(conn).all(page: page, per_page: per_page, order: :realized_at)
+                    query_lockings(conn).all(page:, per_page:, order: :realized_at)
                   end
                 end
               end

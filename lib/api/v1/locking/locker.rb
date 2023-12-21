@@ -37,9 +37,9 @@ module Api
                                                                 prelast_locking_amount_cents_saldo_user_counted)
 
             bookings = all_bookings_from_range(prelast_locking[:realized_at], @realized_at)
-            insert_locking!(saldo_cents_calculated: saldo_cents_calculated,
-                            bookings: bookings,
-                            context: @context)
+            insert_locking!(context: @context,
+                            saldo_cents_calculated:,
+                            bookings:)
           end
         end
 
@@ -92,7 +92,7 @@ module Api
           raise ArgumentError unless bookings.is_a?(Array)
           raise ArgumentError unless context.is_a?(Hash)
 
-          @conn_lockings.insert(saldo_cents_calculated: saldo_cents_calculated,
+          @conn_lockings.insert(saldo_cents_calculated:,
                                 amount_cents_saldo_user_counted: @amount_cents_saldo_user_counted,
                                 realized_at: @realized_at,
                                 bookings: bookings.to_json,
@@ -102,7 +102,7 @@ module Api
         def get_bookings_in_range(from_realized_at, until_realized_at, action = 'deposit')
           raise ArgumentError unless %w[deposit withdraw].any?(action)
 
-          @conn_bookings.where(action: action)
+          @conn_bookings.where(action:)
                         .where { realized_at > from_realized_at }
                         .where { realized_at <= until_realized_at }
                         .all
@@ -112,7 +112,7 @@ module Api
         def get_bookings_saldo_in_range(earlies_date, until_date, action = 'deposit')
           raise ArgumentError unless %w[deposit withdraw].any?(action)
 
-          @conn_bookings.where(action: action)
+          @conn_bookings.where(action:)
                         .where { realized_at > earlies_date }
                         .where { realized_at <= until_date }
                         .select(Sequel.lit('sum(cast(amount_cents as int)) as saldo '))
