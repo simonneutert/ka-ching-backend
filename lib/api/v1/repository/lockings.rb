@@ -35,8 +35,7 @@ module Api
         # @return [Hash] the locking
         #
         def find_by(id:)
-          @conn_lockings.where(id:)
-                        .first
+          @conn_lockings.where(id:).first
         end
 
         #
