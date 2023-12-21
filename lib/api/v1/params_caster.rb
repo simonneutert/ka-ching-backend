@@ -37,11 +37,11 @@ module Api
       #
       def extrude!
         @obj_attributes.each do |attr, (type, opts)|
-          instance_variable_set("@#{attr}", dynamic_cast(attr, type))
+          instance_variable_set(:"@#{attr}", dynamic_cast(attr, type))
         rescue KeyError => e
           raise e unless opts && opts[:optional]
 
-          instance_variable_set("@#{attr}", type.new)
+          instance_variable_set(:"@#{attr}", type.new)
         ensure
           self.class.class_eval { attr_reader attr.to_sym }
         end
