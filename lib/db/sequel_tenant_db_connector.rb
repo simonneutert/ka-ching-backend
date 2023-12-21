@@ -28,14 +28,14 @@ module Db
       "#{DB::DATABASE_TENANT_DATABASE_NAMESPACE}#{@tenant_id}"
     end
 
-    def connect_close(&block)
-      db(&block)
+    def connect_close(&)
+      db(&)
     rescue Sequel::DatabaseConnectionError => e
       raise e unless e.message.include?('does not exist')
       raise e unless @auto_init
 
       create_and_migrate!
-      db(&block)
+      db(&)
     end
 
     def migrate!
@@ -50,8 +50,8 @@ module Db
 
     private
 
-    def db(&block)
-      DB.db_connection(database_name_tenant, &block)
+    def db(&)
+      DB.db_connection(database_name_tenant, &)
     end
 
     def create!

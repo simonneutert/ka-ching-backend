@@ -19,11 +19,11 @@ module DB
 
   Sequel.extension :migration
 
-  def self.db_connection(database, &block)
+  def self.db_connection(database, &)
     Sequel.connect(
       "postgres://#{DATABASE_URL}:#{DATABASE_PORT}/#{database}?user=#{DATABASE_USER}&password=#{DATABASE_PASSWORD}",
       logger: DB::LOGGER,
-      &block
+      &
     )
   end
 
