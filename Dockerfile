@@ -7,6 +7,7 @@ ARG usergroup=killerbuchhaltergroup
 
 ENV	LC_ALL=C.UTF-8
 ENV LANG=en_US.UTF-8
+ENV RUBY_YJIT_ENABLE=true
 
 ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
