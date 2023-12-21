@@ -19,7 +19,7 @@ module Api
         # @return [Hash] returns the booking
         #
         def find_by(id:)
-          @conn_bookings.where(id: id).first
+          @conn_bookings.where(id:).first
         end
 
         #
@@ -30,9 +30,9 @@ module Api
         # @return [Hash] returns the booking and deleted flag
         #
         def delete_by(id:)
-          booking = find_by(id: id)
-          res = @conn_bookings.where(id: id).delete
-          { booking: booking, deleted: res }
+          booking = find_by(id:)
+          res = @conn_bookings.where(id:).delete
+          { booking:, deleted: res }
         end
 
         #

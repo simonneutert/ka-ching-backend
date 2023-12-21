@@ -25,7 +25,7 @@ module Api
             @conn.run('LOCK TABLE bookings IN ACCESS EXCLUSIVE MODE')
             booking = query_bookings(@conn).find_by(id: @uuid)
             last_locking = query_lockings(@conn).latest_active
-            unless deleted?(booking: booking, last_locking: last_locking)
+            unless deleted?(booking:, last_locking:)
               raise Api::V1::Booking::BookerError.new('Impossible!', error_obj: booking)
             end
 
@@ -37,7 +37,7 @@ module Api
         private
 
         def deleted?(booking:, last_locking:)
-          deletable?(booking: booking, last_locking: last_locking) &&
+          deletable?(booking:, last_locking:) &&
             query_bookings(@conn).delete_by(id: @uuid)[:deleted] == 1
         end
 

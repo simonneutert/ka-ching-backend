@@ -52,8 +52,8 @@ module Api
           return latest_locking_realized_at unless (current_saldo - @booker.amount_cents).negative?
 
           raise Api::V1::Booking::BookerError.new('Booking not possible, saldo cannot be negative!',
-                                                  error_obj: { current_saldo: current_saldo,
-                                                               withdraw_amount_cent: @booker.amount_cents })
+                                                  error_obj: { withdraw_amount_cent: @booker.amount_cents,
+                                                               current_saldo: })
         end
 
         def validate_open!(latest_locking_realized_at)
