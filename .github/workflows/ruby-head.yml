@@ -1,4 +1,4 @@
-name: ruby
+name: ruby-head
 
 on:
   push:
