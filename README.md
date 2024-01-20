@@ -8,7 +8,7 @@ The much-sought-after yet elusive cash register system is now finally available 
 
 ### Check out the demo<!-- omit in toc -->
 
-Don't wanna read all the texts below?  
+Can't stand reading long texts? Don't you dare swipe back to TikTok or YouTube Shorts!  
 You want to be inspired and see for yourseld how ka-ching-backend and ka-ching-client (both in Ruby) could be used in a real world project?
 
 ➡️ Visit [ka-ching-demo](https://github.com/simonneutert/ka-ching-demo) and fire up that `docker-compose` 🐳🔥  
