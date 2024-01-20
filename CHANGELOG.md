@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [next] - yyyy-mm-dd
 
+- [#73](https://github.com/simonneutert/ka-ching-backend/pull/73) Adds db setup for prod environments - [@simonneutert](https://github.com/simonneutert).
 - [#72](https://github.com/simonneutert/ka-ching-backend/pull/72) Upgrades Ruby to v3.3.0 - [@simonneutert](https://github.com/simonneutert).
 
 ## [0.4.3] - 2023-12-21
