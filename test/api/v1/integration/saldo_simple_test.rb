@@ -16,7 +16,7 @@ class TestSaldoSimple < ApiIntegrationHelperTest
 
     json_body = JSON.parse(last_response.body)
 
-    assert json_body['saldo'].is_a?(Integer)
+    assert_kind_of Integer, json_body['saldo']
     assert_equal 0, json_body['saldo']
   end
 

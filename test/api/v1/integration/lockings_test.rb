@@ -116,7 +116,7 @@ class TestLockings < ApiIntegrationHelperTest
     assert_equal('Api::V1::Booking::BookerError', json_body['status'])
     assert_equal('Impossible!', json_body['message'])
 
-    assert(json_body['error_object'].is_a?(Hash))
+    assert_kind_of(Hash, json_body['error_object'])
     error_obj = json_body['error_object']
 
     assert_equal(%w[
@@ -135,7 +135,7 @@ class TestLockings < ApiIntegrationHelperTest
     assert_predicate last_response, :ok?
     json_body = JSON.parse(last_response.body)
 
-    assert json_body['saldo'].is_a?(Integer)
+    assert_kind_of Integer, json_body['saldo']
     assert_equal(1001, json_body['saldo'])
   end
 
@@ -167,7 +167,7 @@ class TestLockings < ApiIntegrationHelperTest
       items
     ].sort, JSON.parse(last_response.body).keys.sort)
 
-    assert JSON.parse(last_response.body)['items'].is_a?(Array)
-    assert JSON.parse(last_response.body)['items'].first.is_a?(Hash)
+    assert_kind_of Array, JSON.parse(last_response.body)['items']
+    assert_kind_of Hash, JSON.parse(last_response.body)['items'].first
   end
 end

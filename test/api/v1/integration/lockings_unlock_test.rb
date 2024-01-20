@@ -52,7 +52,7 @@ class TestLockingsUnlock < ApiIntegrationHelperTest
     assert_predicate last_response, :ok?
     json_body = JSON.parse(last_response.body)
 
-    assert json_body['saldo'].is_a?(Integer)
+    assert_kind_of Integer, json_body['saldo']
     assert_equal(1001, json_body['saldo'])
   end
 
@@ -139,7 +139,7 @@ class TestLockingsUnlock < ApiIntegrationHelperTest
     json_body = JSON.parse(last_response.body)
 
     refute_empty json_body['items']
-    assert json_body['items'].is_a?(Array)
+    assert_kind_of Array, json_body['items']
     assert_equal(2, json_body['items'].count)
 
     latest_locking, *other_bookings = json_body['items']

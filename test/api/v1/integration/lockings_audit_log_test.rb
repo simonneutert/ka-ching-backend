@@ -39,7 +39,7 @@ class TestLockingsAuditLog < ApiIntegrationHelperTest
     json_body = JSON.parse(last_response.body)
 
     refute_empty json_body
-    assert json_body.is_a?(Hash)
+    assert_kind_of Hash, json_body
     assert_equal 0, json_body['items'].count
 
     uri = '/ka-ching/api/v1/test/lockings'
@@ -55,7 +55,7 @@ class TestLockingsAuditLog < ApiIntegrationHelperTest
     json_body = JSON.parse(last_response.body)
 
     refute_empty json_body
-    assert json_body.is_a?(Hash)
+    assert_kind_of Hash, json_body
     assert_equal(1, json_body['items'].count)
 
     delete '/ka-ching/api/v1/test/lockings'
@@ -64,7 +64,7 @@ class TestLockingsAuditLog < ApiIntegrationHelperTest
     json_body = JSON.parse(last_response.body)
 
     refute_empty json_body
-    assert json_body.is_a?(Hash)
+    assert_kind_of Hash, json_body
     assert type_locking?(json_body)
     refute_operator(json_body, :[], 'active')
     assert_equal(0, DB::DATABASE_TENANT_TEST_CONN[:lockings].where(active: true).count)
@@ -74,10 +74,10 @@ class TestLockingsAuditLog < ApiIntegrationHelperTest
 
     assert_equal('lockings', audit_log[:table_referenced])
     assert_operator audit_log, :[], :environment_snapshot
-    assert audit_log[:environment_snapshot].is_a?(Sequel::Postgres::JSONBHash)
+    assert_kind_of Sequel::Postgres::JSONBHash, audit_log[:environment_snapshot]
     assert type_locking?(audit_log[:environment_snapshot])
     assert_operator audit_log, :[], :log_entry
-    assert audit_log[:log_entry].is_a?(Sequel::Postgres::JSONBHash)
+    assert_kind_of Sequel::Postgres::JSONBHash, audit_log[:log_entry]
     assert type_locking?(audit_log[:log_entry])
     assert_operator audit_log, :[], :created_at
     assert_operator audit_log, :[], :updated_at
@@ -88,8 +88,8 @@ class TestLockingsAuditLog < ApiIntegrationHelperTest
     json_body = JSON.parse(last_response.body)
 
     refute_empty json_body
-    assert json_body.is_a?(Hash)
-    assert json_body['audit_logs'].is_a?(Array)
+    assert_kind_of Hash, json_body
+    assert_kind_of Array, json_body['audit_logs']
 
     audit_log = json_body['audit_logs'].first
 
@@ -105,12 +105,12 @@ class TestLockingsAuditLog < ApiIntegrationHelperTest
     json_body = JSON.parse(last_response.body)
 
     refute_empty json_body
-    assert json_body.is_a?(Hash)
-    assert json_body['audit_logs'].is_a?(Array)
+    assert_kind_of Hash, json_body
+    assert_kind_of Array, json_body['audit_logs']
 
     audit_log = json_body['audit_logs'].first
 
-    assert json_body['audit_logs'].is_a?(Array)
+    assert_kind_of Array, json_body['audit_logs']
 
     assert_equal(%w[id
                     table_referenced
@@ -125,8 +125,8 @@ class TestLockingsAuditLog < ApiIntegrationHelperTest
     json_body = JSON.parse(last_response.body)
 
     refute_empty json_body
-    assert json_body.is_a?(Hash)
-    assert json_body['audit_logs'].is_a?(Array)
+    assert_kind_of Hash, json_body
+    assert_kind_of Array, json_body['audit_logs']
     audit_log = json_body['audit_logs'].first
 
     assert_equal(%w[id

@@ -40,7 +40,7 @@ class TestLockingsReset < ApiIntegrationHelperTest
 
     json_body = JSON.parse(last_response.body)
 
-    assert json_body['saldo'].is_a?(Integer)
+    assert_kind_of Integer, json_body['saldo']
     assert_equal 1500, json_body['saldo']
 
     uri = '/ka-ching/api/v1/test/bookings/unlocked'
@@ -49,7 +49,7 @@ class TestLockingsReset < ApiIntegrationHelperTest
     assert_predicate last_response, :ok?
     json_body = JSON.parse(last_response.body)
 
-    assert json_body['bookings'].is_a?(Array)
+    assert_kind_of Array, json_body['bookings']
     assert_equal 3, json_body['bookings'].size
 
     ### RESET
@@ -63,7 +63,7 @@ class TestLockingsReset < ApiIntegrationHelperTest
 
     json_body = JSON.parse(last_response.body)
 
-    assert json_body['saldo'].is_a?(Integer)
+    assert_kind_of Integer, json_body['saldo']
     assert_equal 0, json_body['saldo']
 
     assert_predicate last_response, :ok?
@@ -74,7 +74,7 @@ class TestLockingsReset < ApiIntegrationHelperTest
     assert_predicate last_response, :ok?
     json_body = JSON.parse(last_response.body)
 
-    assert json_body['bookings'].is_a?(Array)
+    assert_kind_of Array, json_body['bookings']
     assert_equal 0, json_body['bookings'].size
   end
 end
