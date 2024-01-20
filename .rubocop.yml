@@ -19,7 +19,7 @@ inherit_from: .rubocop_todo.yml
 # value will be used.
 #
 AllCops:
-  TargetRubyVersion: 3.2
+  TargetRubyVersion: 3.3
   NewCops: enable
 
 require:

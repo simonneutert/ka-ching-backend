@@ -220,7 +220,7 @@ I've been tossing around the term "micro-monolith" for some time. Not sure if it
 
 ## Setup and Dependencies
 
-- Ruby 3.x (but 3.2.x is recommended) with the following gems:
+- Ruby 3.x (3.3.x is recommended) with the following gems:
   - [Roda](https://roda.jeremyevans.net/)
   - [Sequel](https://sequel.jeremyevans.net/)
   - [Rake](https://github.com/ruby/rake)

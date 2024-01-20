@@ -5,7 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [next] - unreleased
+## [next] - yyyy-mm-dd
+
+- [#72](https://github.com/simonneutert/ka-ching-backend/pull/72) Upgrades Ruby to v3.3.0 - [@simonneutert](https://github.com/simonneutert).
+
+## [0.4.3] - 2023-12-21
 
 - [#46](https://github.com/simonneutert/ka-ching-backend/pull/46) Bump roda, rubocop, alba and bundler itself - [@simonneutert](https://github.com/simonneutert).
 - [#47](https://github.com/simonneutert/ka-ching-backend/pull/47) Upgrade alba gem to v3+ - [@simonneutert](https://github.com/simonneutert).
