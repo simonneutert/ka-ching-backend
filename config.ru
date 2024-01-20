@@ -24,4 +24,6 @@ rescue StandardError
   nil
 end
 
+require_relative 'db' unless dev
+
 run(dev ? Unreloader : App)
