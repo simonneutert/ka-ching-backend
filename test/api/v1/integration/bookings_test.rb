@@ -235,10 +235,10 @@ class TestBookings < ApiIntegrationHelperTest
     json_body = JSON.parse(last_response.body)
 
     assert_predicate last_response, :ok?
-    assert json_body['saldo'].is_a?(Integer)
+    assert_kind_of Integer, json_body['saldo']
     refute_empty json_body['record']
-    assert json_body['record']['id'].is_a?(String)
-    assert json_body['record']['amount_cents'].is_a?(Integer)
+    assert_kind_of String, json_body['record']['id']
+    assert_kind_of Integer, json_body['record']['amount_cents']
     assert Time.parse(json_body['record']['realized_at'])
   end
 
@@ -251,7 +251,7 @@ class TestBookings < ApiIntegrationHelperTest
     json_body = JSON.parse(last_response.body)
 
     assert_predicate last_response, :ok?
-    assert json_body['saldo'].is_a?(Integer)
+    assert_kind_of Integer, json_body['saldo']
     assert_equal(1500, json_body['saldo'])
   end
 
@@ -298,7 +298,7 @@ class TestBookings < ApiIntegrationHelperTest
     json_body = JSON.parse(last_response.body)
 
     assert_predicate last_response, :ok?
-    assert json_body['saldo'].is_a?(Integer)
+    assert_kind_of Integer, json_body['saldo']
     assert_equal(1500, json_body['saldo'])
 
     uri = '/ka-ching/api/v1/test/lockings'
@@ -313,7 +313,7 @@ class TestBookings < ApiIntegrationHelperTest
     assert_predicate last_response, :ok?
     json_body = JSON.parse(last_response.body)
 
-    assert json_body['saldo'].is_a?(Integer)
+    assert_kind_of Integer, json_body['saldo']
     assert_equal(1501, json_body['saldo'])
 
     uri = '/ka-ching/api/v1/test/bookings'
@@ -324,7 +324,7 @@ class TestBookings < ApiIntegrationHelperTest
     post(uri, JSON.generate(req_data), header_content_type_json)
     json_body = JSON.parse(last_response.body)
 
-    assert json_body['saldo'].is_a?(Integer)
+    assert_kind_of Integer, json_body['saldo']
     assert_equal(2501, json_body['saldo'])
 
     uri = '/ka-ching/api/v1/test/lockings'
@@ -343,7 +343,7 @@ class TestBookings < ApiIntegrationHelperTest
     assert_predicate last_response, :ok?
     json_body = JSON.parse(last_response.body)
 
-    assert json_body['saldo'].is_a?(Integer)
+    assert_kind_of Integer, json_body['saldo']
     assert_equal(2501, json_body['saldo'])
 
     get '/ka-ching/api/v1/test/lockings', { active: true, year: 2022 }
@@ -352,7 +352,7 @@ class TestBookings < ApiIntegrationHelperTest
     json_body = JSON.parse(last_response.body)
 
     refute_empty json_body
-    assert json_body.is_a?(Hash)
+    assert_kind_of Hash, json_body
     assert_equal(1, json_body['items'].count)
 
     lockings = json_body['items']

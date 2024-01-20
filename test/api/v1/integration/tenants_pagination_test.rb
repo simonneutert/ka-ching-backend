@@ -41,7 +41,7 @@ class TestTenantsPagination < ApiIntegrationHelperTest
 
     assert_equal(1, json_body['current_page'])
     assert_equal(1000, json_body['page_size'])
-    assert(json_body['items'].is_a?(Array))
+    assert_kind_of(Array, json_body['items'])
     refute_empty(json_body['items'])
     assert_equal(
       %w[
