@@ -8,8 +8,6 @@ require 'roda'
 require 'rack/deflater'
 require 'securerandom'
 
-require_relative 'db'
-
 Alba.backend = :oj
 
 def rack_env_production?
