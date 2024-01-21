@@ -14,6 +14,7 @@ Schema for new entries:
 ## [next] - yyyy-mm-dd
 
 - [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>)
+- [#75](https://github.com/simonneutert/ka-ching-backend/pull/75) Housekeeping PR, please see details in the PR itself. Expect nothing fancy :wink: - [@simonneutert](https://github.com/simonneutert)
 
 ## [0.5.1] - 2023-12-21
 
