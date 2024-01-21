@@ -4,6 +4,7 @@ require 'logger'
 require 'rack/unreloader'
 
 dev = ENV['RACK_ENV'] == 'development'
+load('./db.rb')
 
 Unreloader = Rack::Unreloader.new(subclasses: %w[Roda Sequel::Model], reload: dev) { App }
 
@@ -23,7 +24,5 @@ begin
 rescue StandardError
   nil
 end
-
-require_relative 'db' unless dev
 
 run(dev ? Unreloader : App)
