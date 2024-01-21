@@ -21,6 +21,7 @@ Schema for new entries:
 - [#97](https://github.com/simonneutert/ka-ching-backend/pull/97) Bump nokogiri from 1.16.2 to 1.16.5 - @dependabot
 - [#77](https://github.com/simonneutert/ka-ching-backend/pull/77) BigDecimal will be moved out of Ruby StandardLibrary from Ruby 3.4 onwards - [@simonneutert](https://github.com/simonneutert)
 - [#76](https://github.com/simonneutert/ka-ching-backend/pull/76) Adds healthcheck for db services. Updating dependencies whilst on it and adds parallel flag to rubocop config - [@simonneutert](https://github.com/simonneutert)
+- [#75](https://github.com/simonneutert/ka-ching-backend/pull/75) Housekeeping PR, please see details in the PR itself. Expect nothing fancy :wink: - [@simonneutert](https://github.com/simonneutert)
 
 ## [0.5.1] - 2023-12-21
 
