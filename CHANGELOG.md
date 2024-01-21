@@ -5,10 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+Schema for new entries:
+
+```markdown
+- [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>)
+```
+
 ## [next] - yyyy-mm-dd
 
+- [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>)
+
+## [0.5.1] - 2023-12-21
+
+- [#74](https://github.com/simonneutert/ka-ching-backend/pull/74) Loads DB config constants on startup to fix a bug when running the project with docker compose - [@simonneutert](https://github.com/simonneutert).
 - [#73](https://github.com/simonneutert/ka-ching-backend/pull/73) Adds db setup for prod environments - [@simonneutert](https://github.com/simonneutert).
+
+## [0.5.0] - 2023-12-20
+
 - [#72](https://github.com/simonneutert/ka-ching-backend/pull/72) Upgrades Ruby to v3.3.0 - [@simonneutert](https://github.com/simonneutert).
+- [#65](https://github.com/simonneutert/ka-ching-backend/pull/65) Upgrades Ruby to v3.2.x - [@simonneutert](https://github.com/simonneutert).
+
+As well as patching some dependencies.
 
 ## [0.4.3] - 2023-12-21
 
