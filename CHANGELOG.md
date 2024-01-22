@@ -13,7 +13,7 @@ Schema for new entries:
 
 ## [next] - yyyy-mm-dd
 
-- [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>)
+- [#76](https://github.com/simonneutert/ka-ching-backend/pull/76) Adds healthcheck for db services. Updating dependencies whilst on it and adds parallel flag to rubocop config - [@<username>](https://github.com/<username>)
 
 ## [0.5.1] - 2023-12-21
 
