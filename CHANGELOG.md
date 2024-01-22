@@ -13,7 +13,8 @@ Schema for new entries:
 
 ## [next] - yyyy-mm-dd
 
-- [#76](https://github.com/simonneutert/ka-ching-backend/pull/76) Adds healthcheck for db services. Updating dependencies whilst on it and adds parallel flag to rubocop config - [@<username>](https://github.com/<username>)
+- [#77](https://github.com/simonneutert/ka-ching-backend/pull/77) BigDecimal will be moved out of Ruby StandardLibrary from Ruby 3.4 onwards - [@simonneutert](https://github.com/simonneutert)
+- [#76](https://github.com/simonneutert/ka-ching-backend/pull/76) Adds healthcheck for db services. Updating dependencies whilst on it and adds parallel flag to rubocop config - [@simonneutert](https://github.com/simonneutert)
 
 ## [0.5.1] - 2023-12-21
 
