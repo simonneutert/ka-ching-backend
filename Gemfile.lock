@@ -18,7 +18,7 @@ GEM
     language_server-protocol (3.17.0.3)
     method_source (1.0.0)
     mini_portile2 (2.8.5)
-    minitest (5.21.2)
+    minitest (5.22.2)
     minitest-hooks (1.5.1)
       minitest (> 5.3)
     nio4r (2.7.0)
@@ -118,7 +118,7 @@ PLATFORMS
 DEPENDENCIES
   alba (~> 3.0)
   bigdecimal (~> 3.1)
-  minitest (~> 5.21)
+  minitest (~> 5.22)
   minitest-hooks (~> 1.5)
   oj (~> 3.16)
   pry (~> 0.14.1)
