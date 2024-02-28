@@ -107,7 +107,7 @@ GEM
     tilt (2.3.0)
     unicode-display_width (2.5.0)
     webrick (1.8.1)
-    yard (0.9.34)
+    yard (0.9.35)
 
 PLATFORMS
   aarch64-darwin
