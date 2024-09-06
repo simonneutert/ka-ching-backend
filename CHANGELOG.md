@@ -13,6 +13,12 @@ Schema for new entries:
 
 ## [next] - yyyy-mm-dd
 
+- [#107](https://github.com/simonneutert/ka-ching-backend/pull/107) updates ruby (asdf) to 3.3.5, bumps bundler to latest and pg for ci from 15 to 16 - [@simonneutert](https://github.com/simonneutert)
+- [#106](https://github.com/simonneutert/ka-ching-backend/pull/106) Bump rexml from 3.3.0 to 3.3.6 - @dependabot
+- [#105](https://github.com/simonneutert/ka-ching-backend/pull/105) Bump rack from 3.1.3 to 3.1.5 - @dependabot
+- [#104](https://github.com/simonneutert/ka-ching-backend/pull/104) Bump the patch-and-minor-dependencies group across 1 directory with 10 updates - @dependabot
+- [#85](https://github.com/simonneutert/ka-ching-backend/pull/85) Bump yard from 0.9.34 to 0.9.36 - @dependabot
+- [#97](https://github.com/simonneutert/ka-ching-backend/pull/97) Bump nokogiri from 1.16.2 to 1.16.5 - @dependabot
 - [#77](https://github.com/simonneutert/ka-ching-backend/pull/77) BigDecimal will be moved out of Ruby StandardLibrary from Ruby 3.4 onwards - [@simonneutert](https://github.com/simonneutert)
 - [#76](https://github.com/simonneutert/ka-ching-backend/pull/76) Adds healthcheck for db services. Updating dependencies whilst on it and adds parallel flag to rubocop config - [@simonneutert](https://github.com/simonneutert)
 
