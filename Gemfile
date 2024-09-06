@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 
 gem 'bigdecimal', '~> 3.2'
+gem 'logger', '~> 1.7'
 gem 'puma', '~> 7.0'
 gem 'rack-unreloader', '~> 2.0'
 gem 'rackup', '~> 2.2.1'
