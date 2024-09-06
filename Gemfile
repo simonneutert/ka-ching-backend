@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gem 'alba', '~> 3.2'
 gem 'bigdecimal', '~> 3.1'
+gem 'logger', '~> 1.6'
 gem 'oj', '~> 3.16'
 gem 'puma', '~> 6.4'
 gem 'rack-unreloader', '~> 2.0'
