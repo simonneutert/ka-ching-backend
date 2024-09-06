@@ -13,6 +13,10 @@ Schema for new entries:
 
 ## [next] - yyyy-mm-dd
 
+- [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>)
+
+## [0.6.0] - 2024-09-06
+
 - [#108](https://github.com/simonneutert/ka-ching-backend/pull/108) updates ruby gems to their latest versions - [@simonneutert](https://github.com/simonneutert)
 - [#107](https://github.com/simonneutert/ka-ching-backend/pull/107) updates ruby (asdf) to 3.3.5, bumps bundler to latest and pg for ci from 15 to 16 - [@simonneutert](https://github.com/simonneutert)
 - [#106](https://github.com/simonneutert/ka-ching-backend/pull/106) Bump rexml from 3.3.0 to 3.3.6 - @dependabot

@@ -1,5 +1,9 @@
 # Upgrading ka-ching-backend
 
+## 0.6.0
+
+No breaking changes are intended and to be expected.
+
 ## >= 0.5.0
 
 Switches to Ruby v3.3 with syntax changes. Rubocop is used to lint the code. This is a breaking change, as v3.3 may not backwards compatible.
