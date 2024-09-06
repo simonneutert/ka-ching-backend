@@ -55,7 +55,7 @@ GEM
     regexp_parser (2.9.2)
     reverse_markdown (2.1.1)
       nokogiri
-    rexml (3.3.0)
+    rexml (3.3.6)
       strscan
     roda (3.81.0)
       rack
