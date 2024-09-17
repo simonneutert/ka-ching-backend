@@ -14,6 +14,7 @@ Schema for new entries:
 ## [next] - yyyy-mm-dd
 
 - [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>)
+- [#110](https://github.com/simonneutert/ka-ching-backend/pull/110) loads `logger` gem from rubygems not standardlib - [@simonneutert](https://github.com/simonneutert)
 
 ## [0.6.0] - 2024-09-06
 
