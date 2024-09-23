@@ -11,9 +11,9 @@ Schema for new entries:
 - [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>)
 ```
 
-## [next] - yyyy-mm-dd
+## [0.6.1] - 2024-09-23
 
-- [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>)
+- [##114](https://github.com/simonneutert/ka-ching-backend/pull/#114) Fix Puma's moderate security vulnerability - [@simonneutert](https://github.com/simonneutert)
 
 ## [0.6.0] - 2024-09-06
 
