@@ -14,19 +14,19 @@ The package follows more or less the [Semantic Versioning](https://semver.org/) 
 
 #### Patch / Hotfixes
 
-- [ ] Create a release PR branch from `main` named `vX.Y.Z`. Follow the SemVer convention.
+- [ ] Create a release with tag from branch `main` named `vX.Y.Z`. Follow the SemVer convention.
 - [ ] Release hotfixes either one by one or in a batch, depending on the urgency.
 - [ ] Check the Changelog and make sure it is up to date with all PR merges, since the last release.
 
 #### Minor
 
-- [ ] Create a release PR branch from `main` named `vX.Y.Z`. Follow the SemVer convention.
+- [ ] Create a release with tag from branch `main` named `vX.Y.Z`. Follow the SemVer convention.
 - [ ] Release the next minor afterwards.
 - [ ] Check the Changelog and make sure it is up to date with all PR merges, since the last release.
 
 #### Major
 
-- [ ] Create a release PR branch from `main` named `vX.Y.Z`. Follow the SemVer convention.
+- [ ] Create a release with tag from branch `main` named `vX.Y.Z`. Follow the SemVer convention.
 - [ ] Release the next major afterwards.
 - [ ] Check the Changelog and make sure it is up to date with all PR merges, since the last release.
 
