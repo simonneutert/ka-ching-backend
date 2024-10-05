@@ -12,7 +12,7 @@ gem 'rake', '~> 13.2'
 gem 'roda', '~> 3.84'
 
 # postgres as adapter
-gem 'sequel', '~> 5.81'
+gem 'sequel', '~> 5.85'
 gem 'sequel_pg', '~> 1.17'
 
 group :development do
