@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    alba (3.2.0)
+    alba (3.3.0)
     ast (2.4.2)
     backport (1.2.0)
     benchmark (0.3.0)
@@ -58,7 +58,7 @@ GEM
     reverse_markdown (2.1.1)
       nokogiri
     rexml (3.3.7)
-    roda (3.84.0)
+    roda (3.85.0)
       rack
     rubocop (1.66.1)
       json (~> 2.3)
@@ -117,7 +117,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  alba (~> 3.2)
+  alba (~> 3.3)
   bigdecimal (~> 3.1)
   minitest (~> 5.24)
   minitest-hooks (~> 1.5)
@@ -128,7 +128,7 @@ DEPENDENCIES
   rack-unreloader (~> 2.0)
   rackup (~> 2.1.0)
   rake (~> 13.2)
-  roda (~> 3.84)
+  roda (~> 3.85)
   rubocop (~> 1.64)
   rubocop-minitest (~> 0.36.0)
   rubocop-performance (~> 1.22)
