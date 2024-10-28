@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Sequel.migration do
-  change do
+  up do
     create_table :lockings do
       primary_key :id
 
@@ -20,5 +20,9 @@ Sequel.migration do
         operator :>=, 0, :amount_cents_saldo_user_counted
       end
     end
+  end
+
+  down do
+    drop_table :lockings
   end
 end

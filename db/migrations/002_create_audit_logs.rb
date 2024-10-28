@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Sequel.migration do
-  change do
+  up do
     create_table :audit_logs do
       primary_key :id
 
@@ -12,5 +12,9 @@ Sequel.migration do
       DateTime :created_at, default: Sequel::CURRENT_TIMESTAMP, index: true
       DateTime :updated_at, default: Sequel::CURRENT_TIMESTAMP, index: true
     end
+  end
+
+  down do
+    drop_table :audit_logs
   end
 end

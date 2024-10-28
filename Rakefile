@@ -59,9 +59,22 @@ namespace :db do # rubocop:disable Metrics/BlockLength
     db.disconnect
   end
 
+  # https://sequel.jeremyevans.net/rdoc/classes/Sequel/Migrator.html
+  # read here how to setup tasks in the future if needed
   desc 'Run migrations'
   task :migrate_tenant_account, [:version, :tenant_account_id] do |_t, args|
     version = args[:version].to_i if args[:version]
+    if args[:tenant_account_id].nil?
+      msg = <<~MSG
+        Please provide tenant_account_id, or 'all' to run migrations for all tenants.
+        i.e.:
+
+        rake db:migrate_tenant_account[1, all]
+        rake db:migrate_tenant_account[3, 123]
+      MSG
+      abort(msg)
+    end
+
     if args[:tenant_account_id] == 'all'
       DB::DATABASE_SHARED_CONN[:tenants].all.each do |tenant|
         db_name = tenant[:tenant_db_id]
