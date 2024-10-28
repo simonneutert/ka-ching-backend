@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Sequel.migration do
-  change do
+  up do
     create_table :bookings do
       uuid :id, primary_key: true
 
@@ -17,5 +17,9 @@ Sequel.migration do
         includes %w[withdraw deposit], :action
       end
     end
+  end
+
+  down do
+    drop_table :bookings
   end
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Sequel.migration do
-  change do
+  up do
     create_table :tenants do
       uuid :id, primary_key: true
 
@@ -14,5 +14,9 @@ Sequel.migration do
       DateTime :created_at, default: Sequel::CURRENT_TIMESTAMP, index: true
       DateTime :updated_at, default: Sequel::CURRENT_TIMESTAMP, index: true
     end
+  end
+
+  down do
+    drop_table :tenants
   end
 end
