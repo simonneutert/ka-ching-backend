@@ -8,6 +8,16 @@ It is preferred to release the package from the `main` branch. If you are not on
 
 It is also preferred to release often and in small increments. This makes it easier to track changes and to fix issues that might arise.
 
+### Changelog and versioning
+
+- [ ] Close the Changelog for this release in a designated commit.
+- [ ] update `version.json` with the current version number (commit --amend --no-edit).
+- [ ] Add the `next` section to the Changelog (commit --amend --no-edit).
+
+### Upgrading hints?
+
+- [ ] Optional: Do you need to add any help, warning or upgrading instructions to the Changelog / UPGRADING.md?
+
 ### Versioning
 
 The package follows more or less the [Semantic Versioning](https://semver.org/) convention. The version number of a release is to be stored in the `version.json` file.
@@ -29,16 +39,6 @@ The package follows more or less the [Semantic Versioning](https://semver.org/) 
 - [ ] Create a release with tag from branch `main` named `vX.Y.Z`. Follow the SemVer convention.
 - [ ] Release the next major afterwards.
 - [ ] Check the Changelog and make sure it is up to date with all PR merges, since the last release.
-
-### Changelog and versioning
-
-- [ ] Close the Changelog for this release in a designated commit.
-- [ ] update `version.json` with the current version number (commit --amend --no-edit).
-- [ ] Add the `next` section to the Changelog (commit --amend --no-edit).
-
-### Upgrading hints?
-
-- [ ] Optional: Do you need to add any help, warning or upgrading instructions to the Changelog / UPGRADING.md?
 
 ## Releasing
 
