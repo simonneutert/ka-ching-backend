@@ -11,6 +11,10 @@ Schema for new entries:
 - [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>)
 ```
 
+## [unreleased] - yyyy-mm-dd
+
+- [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>)
+
 ## [0.6.2] - 2024-10-28
 
 - Multiple PRs bumping depencies - [@simonneutert](https://github.com/simonneutert)
