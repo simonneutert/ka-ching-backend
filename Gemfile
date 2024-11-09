@@ -20,7 +20,7 @@ group :development do
   gem 'rubocop-minitest', '~> 0.36.0', require: false
   gem 'rubocop-performance', '~> 1.22', require: false
   gem 'rubocop-rake', '~> 0.6.0', require: false
-  gem 'rubocop-sequel', '~> 0.3.4', require: false
+  gem 'rubocop-sequel', '~> 0.3.7', require: false
   gem 'solargraph', require: false
 end
 
