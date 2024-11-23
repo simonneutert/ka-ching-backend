@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'alba', '~> 3.3'
 gem 'bigdecimal', '~> 3.1'
 gem 'oj', '~> 3.16'
-gem 'puma', '~> 6.4'
+gem 'puma', '~> 6.5'
 gem 'rack-unreloader', '~> 2.0'
 gem 'rackup', '~> 2.2.1'
 gem 'rake', '~> 13.2'
@@ -25,7 +25,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'minitest', '~> 5.24'
+  gem 'minitest', '~> 5.25'
   gem 'minitest-hooks', '~> 1.5'
   gem 'pry', '~> 0.15.0'
   gem 'rack-test', '~> 2.0'
