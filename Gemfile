@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'alba', '~> 3.3'
+gem 'alba', '~> 3.4'
 gem 'bigdecimal', '~> 3.1'
 gem 'oj', '~> 3.16'
 gem 'puma', '~> 6.5'
@@ -12,11 +12,11 @@ gem 'rake', '~> 13.2'
 gem 'roda', '~> 3.86'
 
 # postgres as adapter
-gem 'sequel', '~> 5.86'
+gem 'sequel', '~> 5.87'
 gem 'sequel_pg', '~> 1.17'
 
 group :development do
-  gem 'rubocop', '~> 1.68', require: false
+  gem 'rubocop', '~> 1.69', require: false
   gem 'rubocop-minitest', '~> 0.36.0', require: false
   gem 'rubocop-performance', '~> 1.23', require: false
   gem 'rubocop-rake', '~> 0.6.0', require: false
