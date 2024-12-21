@@ -30,7 +30,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
-    oj (3.16.7)
+    oj (3.16.8)
       bigdecimal (>= 3.0)
       ostruct (>= 0.2)
     ostruct (0.6.1)
@@ -58,7 +58,7 @@ GEM
     reverse_markdown (2.1.1)
       nokogiri
     rexml (3.3.9)
-    roda (3.86.0)
+    roda (3.87.0)
       rack
     rubocop (1.69.2)
       json (~> 2.3)
@@ -129,7 +129,7 @@ DEPENDENCIES
   rack-unreloader (~> 2.0)
   rackup (~> 2.2.1)
   rake (~> 13.2)
-  roda (~> 3.86)
+  roda (~> 3.87)
   rubocop (~> 1.69)
   rubocop-minitest (~> 0.36.0)
   rubocop-performance (~> 1.23)
