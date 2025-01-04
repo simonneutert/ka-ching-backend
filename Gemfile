@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'alba', '~> 3.4'
+gem 'alba', '~> 3.5'
 gem 'bigdecimal', '~> 3.1'
 gem 'oj', '~> 3.16'
 gem 'puma', '~> 6.5'
@@ -12,7 +12,7 @@ gem 'rake', '~> 13.2'
 gem 'roda', '~> 3.87'
 
 # postgres as adapter
-gem 'sequel', '~> 5.87'
+gem 'sequel', '~> 5.88'
 gem 'sequel_pg', '~> 1.17'
 
 group :development do
