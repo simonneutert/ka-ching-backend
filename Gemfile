@@ -9,14 +9,14 @@ gem 'puma', '~> 6.5'
 gem 'rack-unreloader', '~> 2.0'
 gem 'rackup', '~> 2.2.1'
 gem 'rake', '~> 13.2'
-gem 'roda', '~> 3.87'
+gem 'roda', '~> 3.88'
 
 # postgres as adapter
 gem 'sequel', '~> 5.88'
 gem 'sequel_pg', '~> 1.17'
 
 group :development do
-  gem 'rubocop', '~> 1.69', require: false
+  gem 'rubocop', '~> 1.70', require: false
   gem 'rubocop-minitest', '~> 0.36.0', require: false
   gem 'rubocop-performance', '~> 1.23', require: false
   gem 'rubocop-rake', '~> 0.6.0', require: false
