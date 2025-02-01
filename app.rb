@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
 require 'logger'
-require 'oj'
-require 'alba'
+require 'json'
 require 'pry' unless ENV['RACK_ENV'] == 'production'
 require 'roda'
 require 'rack/deflater'
 require 'securerandom'
-
-Alba.backend = :oj
 
 def rack_env_production?
   ENV.fetch('RACK_ENV', nil) == 'production'
@@ -57,7 +54,7 @@ end
 class App < Roda
   RESET_PROTECTION_ENABLED = reset_protection_enabled?
 
-  plugin :json, configure: ->(c) { c.engine = :alba }
+  plugin :json
   plugin :json_parser
   plugin :all_verbs
   plugin :halt

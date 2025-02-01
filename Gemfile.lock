@@ -1,8 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    alba (3.5.0)
-      ostruct (~> 0.6)
     ast (2.4.2)
     backport (1.2.0)
     benchmark (0.4.0)
@@ -31,9 +29,6 @@ GEM
     nokogiri (1.18.2-x86_64-linux-gnu)
       racc (~> 1.4)
     observer (0.1.2)
-    oj (3.16.9)
-      bigdecimal (>= 3.0)
-      ostruct (>= 0.2)
     ostruct (0.6.1)
     parallel (1.26.3)
     parser (3.3.7.0)
@@ -122,11 +117,9 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  alba (~> 3.5)
   bigdecimal (~> 3.1)
   minitest (~> 5.25)
   minitest-hooks (~> 1.5)
-  oj (~> 3.16)
   pry (~> 0.15.2)
   puma (~> 6.6)
   rack-test (~> 2.2)

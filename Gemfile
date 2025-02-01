@@ -2,9 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'alba', '~> 3.5'
 gem 'bigdecimal', '~> 3.1'
-gem 'oj', '~> 3.16'
 gem 'puma', '~> 6.6'
 gem 'rack-unreloader', '~> 2.0'
 gem 'rackup', '~> 2.2.1'
