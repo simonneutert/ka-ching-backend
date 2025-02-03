@@ -1,5 +1,11 @@
 inherit_from: .rubocop_todo.yml
 
+require:
+  - rubocop-rake
+  - rubocop-sequel
+  - rubocop-minitest
+  - rubocop-performance
+
 # The behavior of RuboCop can be controlled via the .rubocop.yml
 # configuration file. It makes it possible to enable/disable
 # certain cops (checks) and to alter their behavior if they accept
@@ -19,14 +25,8 @@ inherit_from: .rubocop_todo.yml
 # value will be used.
 #
 AllCops:
-  TargetRubyVersion: 3.3
+  TargetRubyVersion: 3.4
   NewCops: enable
-
-require:
-  - rubocop-rake
-  - rubocop-sequel
-  - rubocop-minitest
-  - rubocop-performance
 
 # Configuration parameters: CountComments, CountAsOne, ExcludedMethods, AllowedMethods, AllowedPatterns, IgnoredMethods.
 # AllowedMethods: refine
