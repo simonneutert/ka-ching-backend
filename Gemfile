@@ -14,11 +14,11 @@ gem 'sequel', '~> 5.88'
 gem 'sequel_pg', '~> 1.17'
 
 group :development do
-  gem 'rubocop', '~> 1.71', require: false
-  gem 'rubocop-minitest', '~> 0.36.0', require: false
+  gem 'rubocop', '~> 1.73', require: false
+  gem 'rubocop-minitest', '~> 0.37.1', require: false
   gem 'rubocop-performance', '~> 1.23', require: false
-  gem 'rubocop-rake', '~> 0.6.0', require: false
-  gem 'rubocop-sequel', '~> 0.3.8', require: false
+  gem 'rubocop-rake', '~> 0.7.1', require: false
+  gem 'rubocop-sequel', '~> 0.4.0', require: false
   gem 'solargraph', require: false
 end
 
