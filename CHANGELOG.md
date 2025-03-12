@@ -15,11 +15,11 @@ Schema for new entries:
 
 - [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>)
 
-## 0.6.4 - 2025-03-12
+## [0.6.4] - 2025-03-12
 
 - dependencies - @simonneutert
 
-## 0.6.3 - 2025-03-04
+## [0.6.3] - 2025-03-04
 
 - dependencies - @simonneutert
 
