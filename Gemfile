@@ -10,13 +10,13 @@ gem 'rake', '~> 13.2'
 gem 'roda', '~> 3.88'
 
 # postgres as adapter
-gem 'sequel', '~> 5.88'
+gem 'sequel', '~> 5.91'
 gem 'sequel_pg', '~> 1.17'
 
 group :development do
-  gem 'rubocop', '~> 1.73', require: false
-  gem 'rubocop-minitest', '~> 0.37.1', require: false
-  gem 'rubocop-performance', '~> 1.23', require: false
+  gem 'rubocop', '~> 1.75', require: false
+  gem 'rubocop-minitest', '~> 0.38.0', require: false
+  gem 'rubocop-performance', '~> 1.25', require: false
   gem 'rubocop-rake', '~> 0.7.1', require: false
   gem 'rubocop-sequel', '~> 0.4.0', require: false
   gem 'solargraph', require: false
