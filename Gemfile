@@ -7,10 +7,10 @@ gem 'puma', '~> 6.6'
 gem 'rack-unreloader', '~> 2.0'
 gem 'rackup', '~> 2.2.1'
 gem 'rake', '~> 13.2'
-gem 'roda', '~> 3.88'
+gem 'roda', '~> 3.91'
 
 # postgres as adapter
-gem 'sequel', '~> 5.91'
+gem 'sequel', '~> 5.92'
 gem 'sequel_pg', '~> 1.17'
 
 group :development do
