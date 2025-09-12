@@ -15,6 +15,11 @@ Schema for new entries:
 
 - [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>)
 
+## [0.7.0] - 2025-09-14
+
+- [#162](https://github.com/simonneutert/ka-ching-backend/pull/162) Makes improvements to database performance and overall robustness - [@simonneutert](https://github.com/simonneutert)
+  - **Migration required**: Run `bundle exec rake db:migrate` or `bin/setup` to add composite indexes for improved query performance
+
 ## [0.6.4] - 2025-03-12
 
 - dependencies - @simonneutert

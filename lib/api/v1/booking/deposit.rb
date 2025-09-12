@@ -23,9 +23,10 @@ module Api
         #
         def book!
           # 1. connect to db with lock
-          # 2. append booking
-          # 3. return new saldo
-          # 4. release lock
+          # 2. validate within transaction to prevent race conditions
+          # 3. append booking
+          # 4. return new saldo
+          # 5. release lock
           @conn.transaction do
             @conn.run('LOCK TABLE lockings IN ACCESS EXCLUSIVE MODE')
             @conn.run('LOCK TABLE bookings IN ACCESS EXCLUSIVE MODE')
