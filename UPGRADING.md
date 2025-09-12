@@ -1,5 +1,23 @@
 # Upgrading ka-ching-backend
 
+## 0.7.0
+
+### Database Migration Required
+
+Run the following command to add composite indexes for improved query performance:
+
+```bash
+bundle exec rake db:migrate
+```
+
+Or use the full setup command:
+
+```bash
+bin/setup
+```
+
+This migration adds performance optimizations for bookings and lockings queries. No breaking changes to the API or functionality.
+
 ## 0.6.0
 
 No breaking changes are intended and to be expected.
