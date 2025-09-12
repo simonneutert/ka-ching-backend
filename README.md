@@ -11,7 +11,7 @@ as a micro-monolith.
 
 Can't stand reading long texts? Don't you dare swipe back to TikTok or YouTube
 Shorts!\
-You want to be inspired and see for yourseld how ka-ching-backend and
+You want to be inspired and see for yourself how ka-ching-backend and
 ka-ching-client (both in Ruby) could be used in a real world project?
 
 ➡️ Visit [ka-ching-demo](https://github.com/simonneutert/ka-ching-demo) and fire
