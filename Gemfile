@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 gem 'bigdecimal', '~> 3.2'
-gem 'puma', '~> 6.6'
+gem 'puma', '~> 7.0'
 gem 'rack-unreloader', '~> 2.0'
 gem 'rackup', '~> 2.2.1'
 gem 'rake', '~> 13.3'
