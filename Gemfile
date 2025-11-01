@@ -2,16 +2,16 @@
 
 source 'https://rubygems.org'
 
-gem 'bigdecimal', '~> 3.2'
+gem 'bigdecimal', '~> 3.3'
 gem 'logger', '~> 1.7'
-gem 'puma', '~> 7.0'
+gem 'puma', '~> 7.1'
 gem 'rack-unreloader', '~> 2.0'
 gem 'rackup', '~> 2.2.1'
 gem 'rake', '~> 13.3'
-gem 'roda', '~> 3.96'
+gem 'roda', '~> 3.97'
 
 # postgres as adapter
-gem 'sequel', '~> 5.97'
+gem 'sequel', '~> 5.98'
 gem 'sequel_pg', '~> 1.17'
 
 group :development do
@@ -24,7 +24,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'minitest', '~> 5.25'
+  gem 'minitest', '~> 5.26'
   gem 'minitest-hooks', '~> 1.5'
   gem 'pry', '~> 0.15.2'
   gem 'rack-test', '~> 2.2'
