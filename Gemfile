@@ -8,11 +8,11 @@ gem 'puma', '~> 7.1'
 gem 'rack-unreloader', '~> 2.0'
 gem 'rackup', '~> 2.2.1'
 gem 'rake', '~> 13.3'
-gem 'roda', '~> 3.97'
+gem 'roda', '~> 3.98'
 
 # postgres as adapter
-gem 'sequel', '~> 5.98'
-gem 'sequel_pg', '~> 1.17'
+gem 'sequel', '~> 5.99'
+gem 'sequel_pg', '~> 1.18'
 
 group :development do
   gem 'rubocop', '~> 1.81', require: false
