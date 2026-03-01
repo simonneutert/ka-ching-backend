@@ -11,12 +11,12 @@ gem 'rake', '~> 13.3'
 gem 'roda', '~> 3.100'
 
 # postgres as adapter
-gem 'sequel', '~> 5.101'
+gem 'sequel', '~> 5.102'
 gem 'sequel_pg', '~> 1.18'
 
 group :development do
-  gem 'rubocop', '~> 1.84', require: false
-  gem 'rubocop-minitest', '~> 0.38.2', require: false
+  gem 'rubocop', '~> 1.85', require: false
+  gem 'rubocop-minitest', '~> 0.39.1', require: false
   gem 'rubocop-performance', '~> 1.26', require: false
   gem 'rubocop-rake', '~> 0.7.1', require: false
   gem 'rubocop-sequel', '~> 0.4.0', require: false
