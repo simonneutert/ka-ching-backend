@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'bigdecimal', '~> 3.3'
+gem 'bigdecimal', '~> 4.0'
 gem 'logger', '~> 1.7'
 gem 'puma', '~> 7.2'
 gem 'rack-unreloader', '~> 2.0'
