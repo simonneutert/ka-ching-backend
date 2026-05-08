@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gem 'bigdecimal', '~> 4.1'
 gem 'logger', '~> 1.7'
-gem 'puma', '~> 7.2'
+gem 'puma', '~> 8.0'
 gem 'rack-unreloader', '~> 2.0'
 gem 'rackup', '~> 2.3.1'
 gem 'rake', '~> 13.4'
