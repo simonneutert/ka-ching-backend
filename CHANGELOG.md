@@ -15,14 +15,21 @@ Schema for new entries:
 
 - [#<PRNUMBER>](https://github.com/simonneutert/ka-ching-backend/pull/<PRNUMBER>) description - [@<username>](https://github.com/<username>)
 
+## 0.8.0 - 2026-06-10
+
+- Multiple dependency updates - [@simonneutert](https://github.com/simonneutert)
+## [0.7.6] - 2026-04-02
+
+- Multiple dependency updates - [@simonneutert](https://github.com/simonneutert)
+## [0.7.5] - 2026-03-19
+
+- Multiple dependency updates - [@simonneutert](https://github.com/simonneutert)
 ## [0.7.4] - 2026-02-20
 
 - Multiple dependency updates - [@simonneutert](https://github.com/simonneutert)
-
 ## [0.7.1] - 2025-10-04
 
 - [#110](https://github.com/simonneutert/ka-ching-backend/pull/110) loads `logger` gem from rubygems not standardlib - [@simonneutert](https://github.com/simonneutert)
-
 ## [0.7.0] - 2025-09-14
 
 - [#162](https://github.com/simonneutert/ka-ching-backend/pull/162) Makes improvements to database performance and overall robustness - [@simonneutert](https://github.com/simonneutert)
