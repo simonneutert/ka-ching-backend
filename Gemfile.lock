@@ -10,7 +10,7 @@ GEM
     drb (2.2.3)
     io-console (0.8.2)
     jaro_winkler (1.7.0)
-    json (2.19.7)
+    json (2.19.8)
     kramdown (2.5.2)
       rexml (>= 3.4.4)
     kramdown-parser-gfm (1.1.0)
@@ -191,4 +191,4 @@ DEPENDENCIES
   solargraph
 
 BUNDLED WITH
-  4.0.7
+  4.0.13
