@@ -18,6 +18,7 @@ RUN apt-get update && \
   build-essential \
   libjemalloc2 \
   libpq-dev \
+  libyaml-dev \
   netbase \
   && \
   apt-get clean && \
