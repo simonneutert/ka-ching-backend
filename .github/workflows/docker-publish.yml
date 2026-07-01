@@ -72,3 +72,10 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           platforms: linux/amd64,linux/arm64,linux/arm/v6,linux/arm/v7,linux/arm/v8
+
+      - name: Clean up old packages
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: 'ka-ching-backend'
+          package-type: 'container'
+          min-versions-to-keep: 5
