@@ -17,3 +17,17 @@ updates:
       timezone: "Europe/Berlin"
     assignees:
       - "simonneutert"
+
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    cooldown:
+      default-days: 7
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      day: "saturday"
+      time: "21:45"
+      timezone: "Europe/Berlin"
+    assignees:
+      - "simonneutert"
