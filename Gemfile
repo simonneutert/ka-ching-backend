@@ -8,15 +8,15 @@ gem 'puma', '~> 8.0'
 gem 'rack-unreloader', '~> 2.0'
 gem 'rackup', '~> 2.3.1'
 gem 'rake', '~> 13.4'
-gem 'roda', '~> 3.108'
+gem 'roda', '~> 3.109'
 
 # postgres as adapter
 gem 'sequel', '~> 5.108'
 gem 'sequel_pg', '~> 1.20'
 
 group :development do
-  gem 'rubocop', '~> 1.91', require: false
-  gem 'rubocop-minitest', '~> 0.40.0', require: false
+  gem 'rubocop', '~> 1.92', require: false
+  gem 'rubocop-minitest', '~> 0.41.0', require: false
   gem 'rubocop-performance', '~> 1.27', require: false
   gem 'rubocop-rake', '~> 0.7.1', require: false
   gem 'rubocop-sequel', '~> 0.4.0', require: false
@@ -26,6 +26,6 @@ end
 group :development, :test do
   gem 'minitest', '~> 6.0'
   gem 'minitest-hooks', '~> 1.5'
-  gem 'pry', '~> 0.16.0'
-  gem 'rack-test', '~> 2.2'
+  gem 'pry', '~> 0.16.1'
+  gem 'rack-test', '~> 2.3'
 end
